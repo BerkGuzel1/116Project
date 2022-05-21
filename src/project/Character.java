@@ -2,7 +2,7 @@ package project;
 
 import java.security.SecureRandom;
 
-public class character {
+public class Character {
     private int HP, vitality, intelligence, strength;
 
     public int getHP() {

@@ -2,7 +2,7 @@ package project;
 
 import java.security.SecureRandom;
 
-public class player {
+public class Player {
     private String name, cName;
 
     public String getName() {
@@ -21,7 +21,7 @@ public class player {
         this.cName = cName;
     }
 
-    public player(String name) {
+    public Player(String name) {
         this.name = name;
     }
     public void characterMenu(){

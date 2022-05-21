@@ -1,9 +1,9 @@
 package project;
 
-public class weapon extends items {
+public class Weapon extends items {
    private int damage;
 
-    public weapon(String name, int weight, int value, int damage) {
+    public Weapon(String name, int weight, int value, int damage) {
         super(name, weight, value);
         this.damage = damage;
     }

@@ -1,4 +1,4 @@
 package project;
 
-public class healer extends character{
+public class healer extends Character {
 }

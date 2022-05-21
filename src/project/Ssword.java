@@ -1,8 +1,8 @@
 package project;
 
-public class sSword extends weapon {
+public class Ssword extends Weapon {
 
-    public sSword(String name, int weight, int value, int damage) {
+    public Ssword(String name, int weight, int value, int damage) {
         super(name, weight, value, damage);
         name = "Short sword";
         weight = 5;
