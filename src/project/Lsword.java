@@ -5,7 +5,7 @@ public class Lsword extends Weapon {
         super(name, weight, value, damage);
         name = "Long sword";
         weight = 10;
-        value = 3;
+        value = 6;
         //this.damage = 20;
 
     }

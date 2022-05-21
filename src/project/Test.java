@@ -7,9 +7,12 @@ public class Test {
         int aRandom,bRandom,cRandom ;
         SecureRandom random = new SecureRandom();
         System.out.println("CANNON FODDER");
+        System.out.println();
         aRandom = 1 + random.nextInt(5);
         bRandom = 6 + random.nextInt(5);
         cRandom = 3 + random.nextInt(5);
+      //  Game g = new Game();
+       // g.login();
         //Tank t = new Tank(aRandom,bRandom,cRandom,0.7*bRandom + 0.2*aRandom + 0.1*cRandom);
         //Fighter f = new Fighter(bRandom,cRandom,aRandom);
         //Healer h = new Healer(cRandom,aRandom,bRandom);
@@ -18,7 +21,8 @@ public class Test {
         Tank tank = new Tank(1,1,1,1);
         Fighter fighter = new Fighter(1,1,1,1);
         Healer healer = new Healer(1,1,1,1);
-
+        Level l = new Level();
+        l.start();
 
     }
 }

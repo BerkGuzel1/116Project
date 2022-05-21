@@ -1,33 +1,34 @@
 package project;
 
 import java.security.SecureRandom;
+import java.util.ArrayList;
 
 public class Player {
-    private String name, cName;
+    private String name;
+    public ArrayList<Character> characterArrayList;
 
     public String getName() {
         return name;
+    }
+
+    public ArrayList<Character> getCharacterArrayList() {
+        return characterArrayList;
+    }
+
+    public void setCharacterArrayList(ArrayList<Character> characterArrayList) {
+        this.characterArrayList = characterArrayList;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getcName() {
-        return cName;
-    }
-
-    public void setcName(String cName) {
-        this.cName = cName;
-    }
-
-    public Player(String name) {
+    public Player(String name,ArrayList<Character> characterArrayList) {
         this.name = name;
+        this.characterArrayList = characterArrayList;
     }
-    public void characterMenu(){
-        System.out.println("Here is your characters : ");
-        System.out.println("1- Fighter  \t Strength: ,     Vitality: ,     Intelligence: ");
-        System.out.println("2- Tank     \t Strength: ,     Vitality: ,     Intelligence: ");
-        System.out.println("3- Healer   \t Strength: ,     Vitality: ,     Intelligence: ");
-    }
-}
+    public void printPlayerInfo(){
+        System.out.println("Name:" + name);
+        }
+     }
+

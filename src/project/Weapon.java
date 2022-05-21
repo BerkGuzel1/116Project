@@ -1,7 +1,7 @@
 package project;
 
 public class Weapon extends Items {
-   private int damage;
+   protected int damage;
 
     public Weapon(String name, int weight, int value, int damage) {
         super(name, weight, value);
@@ -14,7 +14,7 @@ public class Weapon extends Items {
 
     @Override
     public String toString() {
-        return String.format("%-20sWeight: %-6dDamage: %-6dRange: %-6d(Weapon)",getName(),getWeight(),damage);
+        return String.format("%-20sName: %-6dWeight: %-6d(Damage)",getName(),getWeight(),damage);
     }
 
     public void keepEnemiesAway() {

@@ -9,6 +9,6 @@ public class Game {
         Scanner sc = new Scanner(System.in);
         System.out.println("Please enter your name : ");
         String playerName =sc.next();
-        player = new Player(playerName);
+        player = new Player(playerName, player.characterArrayList);
     }
 }
