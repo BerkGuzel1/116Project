@@ -1,4 +1,8 @@
 package project;
 
-public class tank extends character{
+import java.security.SecureRandom;
+
+public class tank extends character {
+
+
 }
