@@ -6,7 +6,7 @@ public class Axe extends Weapon {
         name = "Axe";
         weight = 8;
         value = 2;
-        this.damage = 15;
+        //this.damage = 15;
     }
 
     }

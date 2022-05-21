@@ -7,6 +7,6 @@ public class Ssword extends Weapon {
         name = "Short sword";
         weight = 5;
         value = 1;
-        this.damage = 10;
+        //this.damage = 10;
     }
 }

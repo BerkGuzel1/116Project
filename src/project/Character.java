@@ -15,6 +15,13 @@ public class Character {
     private int maxIntelligence;
     private int maxHP; //HP = Round(0.7*V + 0.2*S + 0.1*I)
 
+    public Character(int maxStrength, int maxVitality, int maxIntelligence, int maxHP) {
+        this.maxStrength = maxStrength;
+        this.maxVitality = maxVitality;
+        this.maxIntelligence = maxIntelligence;
+        this.maxHP = maxHP;
+    }
+
     public void attack(){
 
     }
@@ -29,6 +36,38 @@ public class Character {
     public void examine(){}
     public void listInventory(){}
 
+
+    public int getMaxStrength() {
+        return maxStrength;
+    }
+
+    public void setMaxStrength(int maxStrength) {
+        this.maxStrength = maxStrength;
+    }
+
+    public int getMaxVitality() {
+        return maxVitality;
+    }
+
+    public void setMaxVitality(int maxVitality) {
+        this.maxVitality = maxVitality;
+    }
+
+    public int getMaxIntelligence() {
+        return maxIntelligence;
+    }
+
+    public void setMaxIntelligence(int maxIntelligence) {
+        this.maxIntelligence = maxIntelligence;
+    }
+
+    public int getMaxHP() {
+        return maxHP;
+    }
+
+    public void setMaxHP(int maxHP) {
+        this.maxHP = maxHP;
+    }
 
     public int getHP() {
         return HP;
