@@ -6,7 +6,8 @@ public class Tank extends Character {
 
     public Tank(int maxStrength, int maxVitality, int maxIntelligence, int maxHP) {
         super(generateValue1to5(), generateValue6to10(), generateValue3to7(), generateValue1to5());
-        System.out.println("Tank generated. Strength:" + getMaxStrength()+ " Vitality:"+ getMaxVitality() + " Intelligence:" + getMaxIntelligence() + " HP:" + getMaxHP());
+        float maxHp = (float) (getMaxIntelligence()*0.1 + getMaxVitality()*0.7 + getMaxStrength()*0.2);
+        System.out.println("Tank generated. Strength:" + getMaxStrength()+ " Vitality:"+ getMaxVitality() + " Intelligence:" + getMaxIntelligence() + " HP:" + maxHp);
 
     }
 
@@ -51,9 +52,5 @@ public class Tank extends Character {
         int value = rand.nextInt(upperBound);
         return value;
     }*/
-
-
-
-
 
 }

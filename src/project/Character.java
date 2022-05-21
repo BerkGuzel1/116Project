@@ -13,7 +13,7 @@ public class Character {
     private int maxStrength;
     private int maxVitality;
     private int maxIntelligence;
-    private int maxHP; //HP = Round(0.7*V + 0.2*S + 0.1*I)
+    private int maxHP;
 
     public Character(int maxStrength, int maxVitality, int maxIntelligence, int maxHP) {
         this.maxStrength = maxStrength;
