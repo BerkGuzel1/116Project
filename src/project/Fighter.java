@@ -6,7 +6,8 @@ public class Fighter extends Character {
 
     public Fighter(int maxStrength, int maxVitality, int maxIntelligence, int maxHP) {
         super(generateValue6to10(), generateValue3to7(), generateValue1to5(), generateValue1to5());
-        System.out.println("Fighter generated. Strength:" + getMaxStrength()+ " Vitality:"+ getMaxVitality() + " Intelligence:" + getMaxIntelligence() + " HP:" + getMaxHP());
+        float maxHp = (float) (getMaxIntelligence()*0.1 + getMaxVitality()*0.7 + getMaxStrength()*0.2);
+        System.out.println("Fighter generated. Strength:" + getMaxStrength()+ " Vitality:"+ getMaxVitality() + " Intelligence:" + getMaxIntelligence() + " HP:" + maxHp);
 
     }
 

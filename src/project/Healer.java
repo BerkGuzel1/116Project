@@ -6,7 +6,8 @@ public class Healer extends Character {
 
     public Healer(int maxStrength, int maxVitality, int maxIntelligence, int maxHP) {
         super(generateValue3to7(), generateValue1to5(), generateValue6to10(), generateValue1to5());
-        System.out.println("Healer generated. Strength:" + getMaxStrength()+ " Vitality:"+ getMaxVitality() + " Intelligence:" + getMaxIntelligence() + " HP:" + getMaxHP());
+        float maxHp = (float) (getMaxIntelligence()*0.1 + getMaxVitality()*0.7 + getMaxStrength()*0.2);
+        System.out.println("Healer generated. Strength:" + getMaxStrength()+ " Vitality:"+ getMaxVitality() + " Intelligence:" + getMaxIntelligence() + " HP:" + maxHp);
 
     }
 

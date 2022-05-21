@@ -16,6 +16,8 @@ public class Test {
         //Enemy e = new Enemy(aRandom,aRandom,aRandom);
 
         Tank tank = new Tank(1,1,1,1);
+        Fighter fighter = new Fighter(1,1,1,1);
+        Healer healer = new Healer(1,1,1,1);
 
 
     }
