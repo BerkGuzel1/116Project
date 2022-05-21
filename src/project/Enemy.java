@@ -1,4 +1,4 @@
 package project;
 
-public class Enemy {
+public class Enemy extends Character{
 }
