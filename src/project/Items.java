@@ -1,6 +1,6 @@
 package project;
 
-public class items {
+public class Items {
     private String name;
     private int weight;
     private int value;
@@ -29,7 +29,7 @@ public class items {
         this.value = value;
     }
 
-    public items(String name,int weight,int value){
+    public Items(String name, int weight, int value){
         this.name=name;
         this.weight=weight;
         this.value=value;

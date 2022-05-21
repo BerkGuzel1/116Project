@@ -1,6 +1,6 @@
 package project;
 
-public class Weapon extends items {
+public class Weapon extends Items {
    private int damage;
 
     public Weapon(String name, int weight, int value, int damage) {

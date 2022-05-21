@@ -12,7 +12,7 @@ public class Test {
         cRandom = 3 + random.nextInt(5);
         Tank t = new Tank(aRandom,bRandom,cRandom,0.7*bRandom + 0.2*aRandom + 0.1*cRandom);
         Fighter f = new Fighter(bRandom,cRandom,aRandom);
-        healer h = new healer(cRandom,aRandom,bRandom);
+        Healer h = new Healer(cRandom,aRandom,bRandom);
         Enemy e = new Enemy(aRandom,aRandom,aRandom);
 
     }
