@@ -25,10 +25,10 @@ public class Level {
 
 
     public void start(){
-         levelCounter++;
-         enemyNumber = (int) Math.pow(2,levelCounter);
-         System.out.println("Creating Level " + levelCounter + " with " + enemyNumber + " enemy soldier.");
-         System.out.println("Entering Level " + levelCounter + ";" );
+         levelNum++;
+         enemyNumber = (int) Math.pow(2,levelNum);
+         System.out.println("Creating Level " + levelNum + " with " + enemyNumber + " enemy soldier.");
+         System.out.println("Entering Level " + levelNum + ";" );
      }
 
 

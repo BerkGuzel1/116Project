@@ -19,7 +19,9 @@ public class Test {
         Healer healer = new Healer(1,1,1,1);
         Level l = new Level();
        // Items i = new Items();
-        l.start();
+
+        /*Game game = new Game();
+        game.startGame();*/
 
     }
 }
