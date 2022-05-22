@@ -4,14 +4,13 @@ import java.util.Random;
 
 public class Enemy extends Character{
 
-    private static int generateValue1to5(){
+    public static int generateRandomValue(int upperBound, int lowerBound){
         Random rand = new Random();
-        int upperBound = 6;
-        int value = rand.nextInt(upperBound) ;
+        int value = rand.nextInt(upperBound-lowerBound+1) + lowerBound;
         return value;
     }
 
     public Enemy(int maxStrength, int maxVitality, int maxIntelligence, int maxHP) {
-        super(generateValue1to5(), generateValue1to5(), generateValue1to5(), generateValue1to5());
+        super(generateRandomValue(1,5),generateRandomValue(1,5),generateRandomValue(1,5),generateRandomValue(1,5));
     }
 }
