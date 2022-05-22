@@ -11,6 +11,7 @@ public class Fighter extends Character {
 
     }*/
 
+
     public Fighter(int maxStrength, int maxVitality, int maxIntelligence, int maxHP) {
         super(generateRandomValue(10,6), generateRandomValue(7,3), generateRandomValue(5,1), generateRandomValue(5,1));
         float maxHp = (float) (getMaxIntelligence()*0.1 + getMaxVitality()*0.7 + getMaxStrength()*0.2);
@@ -45,7 +46,8 @@ public class Fighter extends Character {
         return value;
     }*/
 
-
-
-
+    @Override
+    public void wield() {
+        super.wield();
+    }
 }

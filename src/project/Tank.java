@@ -17,6 +17,8 @@ public class Tank extends Character {
         return value;
     }
 
+
+
     /*public Tank() {
         setMaxStrength(generateRandomValue(5,1));
         setMaxVitality(generateRandomValue(10,6));

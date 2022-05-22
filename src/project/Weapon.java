@@ -1,24 +1,27 @@
 package project;
 
 public class Weapon extends Items {
-   protected int damage;
 
-    public Weapon(String name, int weight, int value, int damage) {
-        super(name, weight, value);
-        this.damage = damage;
-    }
-
-    public int getDamage() {
-        return damage;
+    public Weapon(String name, int weight, int value,int damage,boolean wield) {
+        super(name, weight, value,wield);
     }
 
     public void specialAction(){
-
+     String wType;
+     if (getName().contains("sword")){
+         wType = "sword";
+     }
+     else if (getName().contains("shield")){
+         wType = "shield";
+     }
+     else wType= "wand";
+        System.out.println(wType);
     }
+
 
     @Override
     public String toString() {
-        return String.format("%-20sName: %-6dWeight: %-6d(Damage)",getName(),getWeight(),damage);
+        return String.format("%-20sName: %-6dWeight: %-6d(Damage)",getName(),getWeight());
     }
 
     public void keepEnemiesAway() {

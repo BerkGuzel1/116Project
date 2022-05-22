@@ -13,15 +13,12 @@ public class Test {
         cRandom = 3 + random.nextInt(5);
       //  Game g = new Game();
        // g.login();
-        //Tank t = new Tank(aRandom,bRandom,cRandom,0.7*bRandom + 0.2*aRandom + 0.1*cRandom);
-        //Fighter f = new Fighter(bRandom,cRandom,aRandom);
-        //Healer h = new Healer(cRandom,aRandom,bRandom);
-        //Enemy e = new Enemy(aRandom,aRandom,aRandom);
 
         Tank tank = new Tank(1,1,1,1);
         Fighter fighter = new Fighter(1,1,1,1);
         Healer healer = new Healer(1,1,1,1);
         Level l = new Level();
+       // Items i = new Items();
         l.start();
 
     }

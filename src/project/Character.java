@@ -1,16 +1,12 @@
 package project;
 
-
-import java.util.ArrayList;
-import java.util.Random;
+import java.security.SecureRandom;
 
 public class Character {
     private int HP;
     private int vitality;
     private int intelligence;
     private int strength;
-    protected ArrayList<Items> inventory;
-    private final int inventoryLimit = 10;
 
 
     //max values a character can have on a level
@@ -26,11 +22,10 @@ public class Character {
         this.maxHP = maxHP;
     }
 
-    public Character() {
+    public void attack(){
 
     }
-
-    public void attack(){
+    public void specialAction(){
 
     }
     public void pick(){
@@ -40,12 +35,6 @@ public class Character {
     public void wear(){}
     public void examine(){}
     public void listInventory(){}
-
-    /*public int generateRandomValue(int upperBound, int lowerBound){
-        Random rand = new Random();
-        int value = rand.nextInt(upperBound-lowerBound+1) + lowerBound;
-        return value;
-    }*/
 
 
     public int getMaxStrength() {
@@ -112,15 +101,4 @@ public class Character {
         this.strength = strength;
     }
 
-    public ArrayList<Items> getInventory() {
-        return inventory;
-    }
-
-    public void setInventory(ArrayList<Items> inventory) {
-        this.inventory = inventory;
-    }
-
-    public int getInventoryLimit() {
-        return inventoryLimit;
-    }
 }
