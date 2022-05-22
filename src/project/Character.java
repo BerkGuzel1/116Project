@@ -1,12 +1,15 @@
 package project;
 
 import java.security.SecureRandom;
+import java.util.ArrayList;
 
 public class Character {
     private int HP;
     private int vitality;
     private int intelligence;
     private int strength;
+    protected ArrayList<Items> inventory;
+    private final int inventoryLimit = 10;
 
 
     //max values a character can have on a level
