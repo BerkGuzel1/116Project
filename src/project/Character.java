@@ -102,4 +102,15 @@ public class Character {
         this.strength = strength;
     }
 
+    public ArrayList<Items> getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(ArrayList<Items> inventory) {
+        this.inventory = inventory;
+    }
+
+    public int getInventoryLimit() {
+        return inventoryLimit;
+    }
 }
