@@ -8,7 +8,7 @@ public class Lsword extends Weapon {
         name = "Long sword";
         weight = 10;
         value = 6;
-       // damage = 20 * character.getMaxStrength();
+        damage = 20;
 
     }
     }
