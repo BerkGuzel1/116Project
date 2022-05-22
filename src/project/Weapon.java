@@ -12,6 +12,10 @@ public class Weapon extends Items {
         return damage;
     }
 
+    public void specialAction(){
+
+    }
+
     @Override
     public String toString() {
         return String.format("%-20sName: %-6dWeight: %-6d(Damage)",getName(),getWeight(),damage);

@@ -28,9 +28,7 @@ public class Character {
     public void attack(){
 
     }
-    public void specialAction(){
 
-    }
     public void pick(){
 
     }
