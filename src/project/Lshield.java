@@ -3,8 +3,6 @@ package project;
 public class Lshield extends Weapon{
     public Lshield(String name, int weight, int value, int damage) {
         super(name, weight, value, damage);
-
-        Character character;
         name = "Long Shield";
         weight = 8;
         value = 3;
