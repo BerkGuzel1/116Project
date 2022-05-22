@@ -11,6 +11,6 @@ public class Enemy extends Character{
     }
 
     public Enemy(int maxStrength, int maxVitality, int maxIntelligence, int maxHP) {
-        super(generateRandomValue(1,5),generateRandomValue(1,5),generateRandomValue(1,5),generateRandomValue(1,5));
+        super(generateRandomValue(5,1),generateRandomValue(5,1),generateRandomValue(5,1),generateRandomValue(5,1));
     }
 }

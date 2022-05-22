@@ -12,7 +12,7 @@ public class Fighter extends Character {
     }*/
 
     public Fighter(int maxStrength, int maxVitality, int maxIntelligence, int maxHP) {
-        super(generateRandomValue(6,10), generateRandomValue(3,7), generateRandomValue(1,5), generateRandomValue(1,5));
+        super(generateRandomValue(10,6), generateRandomValue(7,3), generateRandomValue(5,1), generateRandomValue(5,1));
         float maxHp = (float) (getMaxIntelligence()*0.1 + getMaxVitality()*0.7 + getMaxStrength()*0.2);
         System.out.println("Fighter generated. Strength:" + getMaxStrength()+ " Vitality:"+ getMaxVitality() + " Intelligence:" + getMaxIntelligence() + " HP:" + maxHp);
 

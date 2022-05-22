@@ -26,6 +26,10 @@ public class Character {
         this.maxHP = maxHP;
     }
 
+    public Character() {
+
+    }
+
     public void attack(){
 
     }
