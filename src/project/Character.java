@@ -1,7 +1,8 @@
 package project;
 
-import java.security.SecureRandom;
+
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Character {
     private int HP;
@@ -25,10 +26,13 @@ public class Character {
         this.maxHP = maxHP;
     }
 
-    public void attack(){
+    public Character() {
 
     }
 
+    public void attack(){
+
+    }
     public void pick(){
 
     }
@@ -36,6 +40,12 @@ public class Character {
     public void wear(){}
     public void examine(){}
     public void listInventory(){}
+
+    /*public int generateRandomValue(int upperBound, int lowerBound){
+        Random rand = new Random();
+        int value = rand.nextInt(upperBound-lowerBound+1) + lowerBound;
+        return value;
+    }*/
 
 
     public int getMaxStrength() {
@@ -102,4 +112,15 @@ public class Character {
         this.strength = strength;
     }
 
+    public ArrayList<Items> getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(ArrayList<Items> inventory) {
+        this.inventory = inventory;
+    }
+
+    public int getInventoryLimit() {
+        return inventoryLimit;
+    }
 }
