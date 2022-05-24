@@ -1,13 +1,18 @@
-package project;
+package Characters;
 
-import java.security.SecureRandom;
+import Items.Items;
+
+import java.util.ArrayList;
 
 public class Character {
     private int HP;
     private int vitality;
     private int intelligence;
     private int strength;
-
+    private ArrayList<Items> items;
+    private int damagetaken;
+    private Items weapon;
+    private Items armor;
 
     //max values a character can have on a level
     private int maxStrength;
@@ -20,21 +25,31 @@ public class Character {
         this.maxVitality = maxVitality;
         this.maxIntelligence = maxIntelligence;
         this.maxHP = maxHP;
+        items = new ArrayList<>();
     }
 
-    public void attack(){
+    public void attack() {
+    }
+
+    public void specialAction() {
 
     }
-    public void specialAction(){
+
+    public void pick() {
 
     }
-    public void pick(){
 
+    public void wield() {
     }
-    public void wield(){}
-    public void wear(){}
-    public void examine(){}
-    public void listInventory(){}
+
+    public void wear() {
+    }
+
+    public void examine() {
+    }
+
+    public void listInventory() {
+    }
 
 
     public int getMaxStrength() {
@@ -101,4 +116,35 @@ public class Character {
         this.strength = strength;
     }
 
+    public ArrayList<Items> getItems() {
+        return items;
+    }
+
+    public void setItems(ArrayList<Items> items) {
+        this.items = items;
+    }
+
+    public int getDamagetaken() {
+        return damagetaken;
+    }
+
+    public void setDamagetaken(int damagetaken) {
+        this.damagetaken = damagetaken;
+    }
+
+    public Items getWeapon() {
+        return weapon;
+    }
+
+    public void setWeapon(Items weapon) {
+        this.weapon = weapon;
+    }
+
+    public Items getArmor() {
+        return armor;
+    }
+
+    public void setArmor(Items armor) {
+        this.armor = armor;
+    }
 }

@@ -1,4 +1,9 @@
-package project;
+package GameThings;
+
+import Characters.Enemy;
+import Characters.Fighter;
+import Characters.Healer;
+import Characters.Tank;
 
 public class Level {
     protected static int levelNum = 0;

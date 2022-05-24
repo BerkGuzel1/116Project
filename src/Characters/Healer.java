@@ -1,4 +1,6 @@
-package project;
+package Characters;
+
+import Characters.Character;
 
 import java.util.Random;
 

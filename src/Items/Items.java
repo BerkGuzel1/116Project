@@ -1,4 +1,4 @@
-package project;
+package Items;
 
 import javax.swing.text.html.HTMLDocument;
 

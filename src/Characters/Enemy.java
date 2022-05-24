@@ -1,8 +1,10 @@
-package project;
+package Characters;
+
+import Characters.Character;
 
 import java.util.Random;
 
-public class Enemy extends Character{
+public class Enemy extends Character {
 
     private static int generateValue1to5(){
         Random rand = new Random();

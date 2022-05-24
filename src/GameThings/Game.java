@@ -1,4 +1,9 @@
-package project;
+package GameThings;
+
+import Characters.Enemy;
+import Characters.Fighter;
+import Characters.Healer;
+import Characters.Tank;
 
 import java.util.ArrayList;
 import java.util.Random;

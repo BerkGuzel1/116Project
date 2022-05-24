@@ -1,8 +1,8 @@
-package project;
+package Items;
 
-import javax.swing.text.html.HTMLDocument;
+import Items.Items;
 
-public class Armor extends Items{
+public class Armor extends Items {
 
     public Armor(String name, int weight, int value,boolean wield) {
         super(name, weight, value,wield);

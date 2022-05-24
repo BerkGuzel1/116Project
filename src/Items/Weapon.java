@@ -1,21 +1,22 @@
-package project;
+package Items;
+
+import Items.Items;
 
 public class Weapon extends Items {
+ private int damage;
 
-    public Weapon(String name, int weight, int value,int damage,boolean wield) {
-        super(name, weight, value,wield);
+    public int getDamage() {
+        return damage;
     }
 
+    public Weapon(String name, int weight, int value, boolean wield, int damage) {
+        super(name, weight, value,wield);
+        this.damage =damage;
+    }
+
+    @Override
     public void specialAction(){
-     String wType;
-     if (getName().contains("sword")){
-         wType = "sword";
-     }
-     else if (getName().contains("shield")){
-         wType = "shield";
-     }
-     else wType= "wand";
-        System.out.println(wType);
+
     }
 
 
