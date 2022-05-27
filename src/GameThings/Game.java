@@ -23,7 +23,10 @@ public class Game {
     protected Enemy enemy;
     protected ArrayList<Level> levels;
     protected Level currentLevel;
-
+    protected Weapon weapon;
+    protected Sword sword;
+    protected Shield shield;
+    protected Wand wand;
 
 
     public boolean isOver(){
@@ -54,12 +57,7 @@ public class Game {
 
     }
 
-    public void runGame(){
-
-    }
-
-
-
+    public void runGame(){}
 
     public void generateTank(){
         tank = new Tank(generateRandomValue(5,1),
@@ -89,7 +87,111 @@ public class Game {
                 generateRandomValue(5,1));
     }
 
+
+    //value neydi?
+    //wield i nasil degistircez?
     public void generateSword(){
+        sword = new Sword("", 3,10,true,3);
+        fighter.setWeapon(sword);
+    }
+
+    public void generateShield(){
+        shield = new Shield("", 5,10,true,1);
+        tank.setWeapon(shield);
 
     }
+
+    public void generateWand(){
+        wand = new Wand("",2,10,true,2 );
+        healer.setWeapon(wand);
+    }
+
+    public void equipSword(){
+
+    }
+
+
+    // gecen senekinden. inventory e bir seyler alip cikarma bu methodtan yazmamiz lazim
+    /*protected void inventoryAction() {
+        this.hero.printInventory();
+        String dropItemString = "";
+        if (this.hero.getInventory().size() != 0) {
+            while(true) {
+                System.out.println("Do you want to drop items from your inventory? ");
+                dropItemString = this.input.nextLine();
+                if (dropItemString.equals("yes") || dropItemString.equals("no")) {
+                    break;
+                }
+
+                System.out.println("You can either say 'yes' or 'no'");
+            }
+        }
+
+        String changeItemString;
+        if (dropItemString.equals("yes")) {
+            changeItemString = "";
+
+            do {
+                System.out.println("Write the name of the item that you want to drop: ");
+                changeItemString = this.input.nextLine();
+            } while(!changeItemString.equals("cancel") && !this.currentLevel.dropItem(changeItemString));
+        }
+
+        changeItemString = "";
+        if (this.hero.getInventory().size() != 0) {
+            while(true) {
+                System.out.println("Do you want to change your current used items? ");
+                changeItemString = this.input.nextLine();
+                if (changeItemString.equals("yes") || changeItemString.equals("no")) {
+                    break;
+                }
+
+                System.out.println("You can either say 'yes' or 'no'");
+            }
+        }
+
+        if (changeItemString.equals("yes")) {
+            this.hero.changeUsedItems();
+        }
+
+    } */
+
+    /*public void changeUsedItems() {
+        System.out.println("Current Items:");
+        System.out.println(this.getArmor());
+        System.out.println(this.getWeapon());
+        System.out.println("\nItems in your inventory:");
+        this.printInventory();
+        System.out.println("\nWrite the name of the item you want to use from your inventory:");
+        String itemName = this.input.nextLine();
+        if (!itemName.equals("cancel")) {
+            int indexOfItem = -1;
+
+            for(int i = 0; i < this.getInventory().size(); ++i) {
+                if (this.getInventory().get(i) != null && ((Item)this.getInventory().get(i)).getName().toLowerCase().equals(itemName.toLowerCase())) {
+                    indexOfItem = i;
+                    break;
+                }
+            }
+
+            if (indexOfItem == -1) {
+                System.out.println("There is no such item in the inventory.\nYou can write 'cancel' if you changed you mind.");
+            }
+
+            if (indexOfItem > 0) {
+                Item item = (Item)this.getInventory().get(indexOfItem);
+                this.getInventory().remove(indexOfItem);
+                if (item instanceof Weapon) {
+                    this.getInventory().add(this.getWeapon());
+                    this.setWeapon((Weapon)item);
+                    System.out.printf("You are now using '%s' as your weapon%n", item.getName());
+                } else if (item instanceof Clothing) {
+                    this.getInventory().add(this.getArmor());
+                    this.setArmor((Clothing)item);
+                    System.out.printf("You are now using '%s' as your armor%n", item.getName());
+                }
+            }
+
+        }
+    } */
 }
