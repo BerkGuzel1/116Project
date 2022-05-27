@@ -4,7 +4,7 @@ import Characters.Enemy;
 import Characters.Fighter;
 import Characters.Healer;
 import Characters.Tank;
-
+import Items.*;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -23,6 +23,7 @@ public class Game {
     protected Enemy enemy;
     protected ArrayList<Level> levels;
     protected Level currentLevel;
+
 
 
     public boolean isOver(){
@@ -86,5 +87,9 @@ public class Game {
                 generateRandomValue(5,1),
                 generateRandomValue(5,1),
                 generateRandomValue(5,1));
+    }
+
+    public void generateSword(){
+
     }
 }
