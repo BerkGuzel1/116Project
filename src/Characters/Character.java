@@ -14,6 +14,8 @@ public class Character {
     private Items weapon;
     private Items armor;
 
+
+
     //max values a character can have on a level
     private int maxStrength;
     private int maxVitality;
