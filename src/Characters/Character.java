@@ -5,6 +5,7 @@ import Items.Weapon;
 
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Character {
     private int HP;
@@ -15,7 +16,7 @@ public class Character {
     private int damagetaken;
     private Weapon weapon;
     private Items armor;
-
+    private String choosenCha;
 
 
     //max values a character can have on a level
@@ -33,8 +34,8 @@ public class Character {
     }
 
     public void attack() {
-        System.out.println("");
-    }
+
+        }
 
 
     public void pick() {

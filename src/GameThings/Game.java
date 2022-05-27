@@ -1,5 +1,6 @@
 package GameThings;
 
+import Characters.Character;
 import Characters.Enemy;
 import Characters.Fighter;
 import Characters.Healer;
@@ -31,7 +32,6 @@ public class Game {
     protected Sword sword;
     protected Shield shield;
     protected Wand wand;
-
 
 
     public boolean isOver(){
@@ -96,10 +96,6 @@ public class Game {
                 generateRandomValue(5,1),
                 generateRandomValue(5,1),
                 generateRandomValue(5,1));
-    }
-
-    public void equipSword(){
-
     }
 
 

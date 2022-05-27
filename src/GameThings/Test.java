@@ -1,19 +1,37 @@
 package GameThings;
 
 import java.security.SecureRandom;
+import java.util.Scanner;
 
 public class Test {
     public static void main(String[] args) {
-        int aRandom,bRandom,cRandom ;
-        SecureRandom random = new SecureRandom();
+        Scanner sc = new Scanner(System.in);
+        boolean isTrue = true;
+        Game game = new Game();
         System.out.println("CANNON FODDER");
         System.out.println();
-        aRandom = 1 + random.nextInt(5);
-        bRandom = 6 + random.nextInt(5);
-        cRandom = 3 + random.nextInt(5);
+        System.out.println(" 0 for start the game \n 1 for Player Stats \n 2 for close the game..");
+        while (isTrue) {
+            System.out.println();
+            int choice = sc.nextInt();
+            switch (choice) {
+                case 0:
+                    game.startGame();
+                    break;
+                case 1:
+                //Scoreboard
+                    break;
+                case 2:
+                    System.out.println("System is closing..");
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Try again!");
+            }
+        }
 
-        Game game = new Game();
-        game.startGame();
+
+
 
     }
 }
