@@ -5,16 +5,17 @@ import Items.Items;
 public class Weapon extends Items {
  private int damage;
 
+
     public int getDamage() {
         return damage;
     }
 
-    public Weapon(String name, int weight, int value, boolean wield, int damage) {
-        super(name, weight, value,wield);
+    public Weapon(String name, int weight, int value,int damage) {
+        super(name, weight, value);
         this.damage =damage;
     }
 
-    @Override
+
     public void specialAction(){
 
     }

@@ -4,6 +4,8 @@ import Characters.Enemy;
 import Characters.Fighter;
 import Characters.Healer;
 import Characters.Tank;
+import Items.Items;
+import Items.Weapon;
 
 import java.util.ArrayList;
 import java.util.Random;

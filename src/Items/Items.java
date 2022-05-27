@@ -6,15 +6,6 @@ public class Items {
     private String name;
     private int weight;
     private int value;
-    private boolean wield;
-
-    public boolean isWield() {
-        return wield;
-    }
-
-    public void setWield(boolean wield) {
-        this.wield = wield;
-    }
 
     public String getName() {
         return name;
@@ -40,15 +31,10 @@ public class Items {
         this.value = value;
     }
 
-    public Items(String name, int weight, int value,boolean wield) {
+    public Items(String name, int weight, int value) {
         this.name = name;
         this.weight = weight;
         this.value = value;
-        this.wield =wield;
-    }
-
-    public void specialAction(){
-
     }
 
 }
