@@ -2,7 +2,7 @@ package Characters;
 
 import Items.Items;
 import Items.Weapon;
-import Items.Armor;
+
 
 import java.util.ArrayList;
 
@@ -35,9 +35,6 @@ public class Character {
     public void attack() {
     }
 
-    public void specialAction() {
-
-    }
 
     public void pick() {
 

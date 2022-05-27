@@ -1,6 +1,6 @@
 package Characters;
 
-import Characters.Character;
+import Items.Wand;
 
 import java.util.Random;
 
@@ -10,6 +10,8 @@ public class Healer extends Character {
         super(generateRandomValue(7,3), generateRandomValue(5,1), generateRandomValue(10,6), generateRandomValue(5,1));
         float maxHp = (float) (getMaxIntelligence()*0.1 + getMaxVitality()*0.7 + getMaxStrength()*0.2);
         System.out.println("Healer generated. Strength:" + getMaxStrength()+ " Vitality:"+ getMaxVitality() + " Intelligence:" + getMaxIntelligence() + " HP:" + maxHp);
+        this.setWeapon(new Wand("Wand ",2,1,1));
+        System.out.println("*** Healer equipped the wand ***  Wand name: " + getWeapon().getName() + " Weight: " +  getWeapon().getWeight() + " Value: " + getWeapon().getValue() + " Damage: " + 1);
 
     }
 
