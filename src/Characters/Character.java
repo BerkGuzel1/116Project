@@ -1,6 +1,8 @@
 package Characters;
 
 import Items.Items;
+import Items.Weapon;
+import Items.Armor;
 
 import java.util.ArrayList;
 
@@ -11,7 +13,7 @@ public class Character {
     private int strength;
     private ArrayList<Items> items;
     private int damagetaken;
-    private Items weapon;
+    private Weapon weapon;
     private Items armor;
 
 
@@ -138,7 +140,7 @@ public class Character {
         return weapon;
     }
 
-    public void setWeapon(Items weapon) {
+    public void setWeapon(Weapon weapon) {
         this.weapon = weapon;
     }
 
