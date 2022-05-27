@@ -18,6 +18,7 @@ public class Test {
                 case 0:
                     game.startGame();
                     break;
+
                 case 1:
                 //Scoreboard
                     break;
