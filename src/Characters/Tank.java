@@ -12,7 +12,7 @@ public class Tank extends Character {
         float maxHp = (float) (getMaxIntelligence() * 0.1 + getMaxVitality() * 0.7 + getMaxStrength() * 0.2);
         System.out.println("Tank generated. Strength:" + getMaxStrength() + " Vitality:" + getMaxVitality() + " Intelligence:" + getMaxIntelligence() + " HP:" + maxHp);
         this.setWeapon(new Shield("Shield ",6,1,2));
-        System.out.println("***Tank equipped the shield ***  Shield name: " + getWeapon().getName() + " Weight: " +  getWeapon().getWeight() + " Value: " + getWeapon().getValue() + " Damage: " + 2 );
+        System.out.println("***Tank equipped the shield ***  Shield name: " + getWeapon().getName() + " Weight: " +  getWeapon().getWeight() + " Value: " + getWeapon().getValue() + " Damage: " + getWeapon().getDamage() );
 
     }
 
@@ -23,4 +23,9 @@ public class Tank extends Character {
         return value;
     }
 
+    @Override
+    public void attack() {
+        super.attack();
+        System.out.println("Tank does " + (getWeapon().getDamage()*getMaxVitality()) + " damage.");
+    }
 }

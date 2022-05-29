@@ -4,9 +4,6 @@ import Characters.Enemy;
 import Characters.Fighter;
 import Characters.Healer;
 import Characters.Tank;
-import Items.Items;
-
-import java.util.ArrayList;
 
 public class Level {
     protected int levelID =-1;
@@ -14,8 +11,6 @@ public class Level {
     protected Tank tank;
     protected Healer healer;
     protected Enemy enemy;
-    protected ArrayList<Enemy> monsters;
-    protected ArrayList<Items> levelItems; //itemler levelda olsun
     int enemyNumber= (int) Math.pow(2,levelID);
 
     public Level() {
@@ -31,12 +26,6 @@ public class Level {
     public void Menu(){
         System.out.println("Which character do you choose for attack?");
     }
-
-
-
-
-
-
 
 
 }
