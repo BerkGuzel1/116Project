@@ -36,5 +36,15 @@ public class Items {
         this.weight = weight;
         this.value = value;
     }
+    public void showInfo() {
+        System.out.println("The name of this item is: " + name);
+
+        if (weight >= 10) {
+            System.out.println("This one looks a bit heavy.You must be strong to carry this. It weighs: " + weight);
+        } else {
+            System.out.println("Seems easy to carry. It weighs: " + weight);
+        }
+
+    }
 
 }
