@@ -12,9 +12,7 @@ public class Character {
     private int vitality;
     private int intelligence;
     private int strength;
-    ArrayList<ArrayList<Items>> inventory = new ArrayList<>();
-    ArrayList<Items> weaponsArray = new ArrayList<>();
-    ArrayList<Items> armorArray = new ArrayList<>();
+
 
     private int damagetaken;
     private Weapon weapon;
@@ -33,9 +31,7 @@ public class Character {
         this.maxVitality = maxVitality;
         this.maxIntelligence = maxIntelligence;
         this.maxHP = maxHP;
-        inventory = new ArrayList<>();
-        weaponsArray = new ArrayList<Items>();
-        armorArray = new ArrayList<Items>();
+
     }
 
     public void attack() {
@@ -124,11 +120,7 @@ public class Character {
         this.strength = strength;
     }
 
-    public ArrayList<ArrayList<Items>> getInventory() {
-        inventory.add(weaponsArray);
-        inventory.add(armorArray);
-        return inventory;
-    }
+
 
     public int getDamagetaken() {
         return damagetaken;
