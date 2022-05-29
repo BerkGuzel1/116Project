@@ -16,12 +16,6 @@ import java.util.Scanner;
 
 public class Game {
 
-    public void login(){
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Please enter your name : ");
-        String playerName =sc.next();
-    }
-
     protected Fighter fighter;
     protected Healer healer;
     protected Tank tank;
@@ -33,6 +27,11 @@ public class Game {
     protected Shield shield;
     protected Wand wand;
 
+    public void login(){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Please enter your name : ");
+        String playerName =sc.next();
+    }
 
     public boolean isOver(){
         if(fighter.getHP() == 0 && healer.getHP()==0 && tank.getHP()==0){
@@ -49,25 +48,29 @@ public class Game {
     }
 
 
-
     public void startGame(){
+        //level olusturma basta olunca karakterler levela giriyor diyor sonra karakterleri olusturuyor
+        //o yuzden karakter olusturmayi basa aldim.
         System.out.println("Welcome to Cannon Fodder!");
         System.out.println("--------------------------------");
-        currentLevel = new Level();
-        currentLevel.levelID++;
         generateTank();
         generateFighter();
         generateHealer();
         generateEnemy();
-
-
+        ArrayList<Character> firstCharacters = new ArrayList<Character>();
+        firstCharacters.add(this.fighter);
+        firstCharacters.add(this.healer);
+        firstCharacters.add(this.tank);
+        firstCharacters.add(this.enemy);
+        currentLevel = new Level();
+        currentLevel.levelID++;
+        //levels.add(currentLevel); bunda null erroru veriyor.
+        //currentLevel.characterArrayList = firstCharacters;
     }
 
     public void runGame(){
 
     }
-
-
 
 
     public void generateTank(){
