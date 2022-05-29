@@ -1,7 +1,5 @@
 package Items;
 
-import javax.swing.text.html.HTMLDocument;
-
 public class Items {
     private String name;
     private int weight;
@@ -24,7 +22,7 @@ public class Items {
         this.name = name;
     }
 
-    public int getWeight() {
+    public boolean getWeight() {
         return weight;
     }
 

@@ -76,15 +76,16 @@ public class Game {
         currentLevel.Menu();
         String chaChoice = sc.next();
         if (chaChoice.contains("Fighter") || chaChoice.contains("fighter")){
-            System.out.println("Fighter attack Enemy" + (currentLevel.levelID));
+            System.out.println("Fighter attack Enemy" + currentLevel.levelID);
             fighter.attack();
+            System.out.println("Enemy " + currentLevel.levelID +  " has " + enemy.getHP() + " left." );
         }
         else if (chaChoice.contains("Healer") || chaChoice.contains("healer")){
-            System.out.println("Healer attack Enemy" + (currentLevel.levelID));
+            System.out.println("Healer attack Enemy" + currentLevel.levelID);
             healer.attack();
         }
         else if (chaChoice.contains("Tank") || chaChoice.contains("tank")){
-            System.out.println("Tank attack Enemy" + (currentLevel.levelID));
+            System.out.println("Tank attack Enemy" + currentLevel.levelID);
             tank.attack();
         }
     }
