@@ -5,8 +5,6 @@ import java.util.ArrayList;
 public class Equipment extends ArrayList<Items> {
     @Override
     public boolean add(Items items) {
-
-
         if (this.size() < 3) {
             return super.add(items);
         }

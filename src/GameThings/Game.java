@@ -78,15 +78,19 @@ public class Game {
         if (chaChoice.contains("Fighter") || chaChoice.contains("fighter")){
             System.out.println("Fighter attack Enemy" + currentLevel.levelID);
             fighter.attack();
-            System.out.println("Enemy " + currentLevel.levelID +  " has " + enemy.getHP() + " left." );
+            System.out.println("Enemy " + currentLevel.levelID +  " has " + enemy.getMaxHP() + " left." );
         }
         else if (chaChoice.contains("Healer") || chaChoice.contains("healer")){
             System.out.println("Healer attack Enemy" + currentLevel.levelID);
             healer.attack();
+            System.out.println("Enemy " + currentLevel.levelID +  " has " + enemy.getMaxHP() + " left." );
+
         }
         else if (chaChoice.contains("Tank") || chaChoice.contains("tank")){
             System.out.println("Tank attack Enemy" + currentLevel.levelID);
             tank.attack();
+            System.out.println("Enemy " + currentLevel.levelID +  " has " + enemy.getMaxHP() + " left." );
+
         }
     }
 
