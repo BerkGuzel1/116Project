@@ -6,6 +6,7 @@ import Items.Sword;
 import Items.Wand;
 
 
+import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import java.util.Random;
 
 public class Enemy extends Character {
@@ -50,6 +51,7 @@ public class Enemy extends Character {
         super.attack();
         if (getWeapon().getDamage() == 1) {
             System.out.println("Enemy does " + (getWeapon().getDamage() * getMaxIntelligence()) + " damage.");
+
         }
         else if (getWeapon().getDamage() == 2) {
             System.out.println("Enemy does " + (getWeapon().getDamage() * getMaxVitality()) + " damage.");
@@ -63,5 +65,6 @@ public class Enemy extends Character {
     @Override
     public void takeDamage() {
         super.takeDamage();
+        setTakenDamage((int) (maxHp - getTakenDamage()));
     }
 }

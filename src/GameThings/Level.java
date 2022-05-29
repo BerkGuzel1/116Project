@@ -16,7 +16,6 @@ public class Level {
     public Level() {
         System.out.println("A new level is being generated...");
         levelID++;
-
         System.out.println("Current Level ID:" + levelID);
         System.out.println("There are " + Math.pow(2,levelID) + " enemies in this level.");
         System.out.println(" Entering level " + levelID + "; Fighter enters. Tank enters. Healer enters. Enemy" + (levelID+1) + " enters.");
@@ -26,6 +25,5 @@ public class Level {
     public void Menu(){
         System.out.println("Which character do you choose for attack?");
     }
-
 
 }
