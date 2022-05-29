@@ -35,8 +35,8 @@ public class Character {
     }
 
     public void attack() {
-
-        }
+        System.out.println();
+    }
 
 
     public void pick() {

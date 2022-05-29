@@ -10,9 +10,8 @@ public class Test {
         Game game = new Game();
         System.out.println("CANNON FODDER");
         System.out.println();
-        System.out.println(" 0 for start the game \n 1 for Player Stats \n 2 for close the game..");
+        System.out.println("Press\n" +"0-START THE GAME\n1-DISPLAY SCOREBOARD\n2-EXIT");
         while (isTrue) {
-            System.out.println();
             int choice = sc.nextInt();
             switch (choice) {
                 case 0:
@@ -20,7 +19,7 @@ public class Test {
                     break;
 
                 case 1:
-                //Scoreboard
+                    //Scoreboard
                     break;
                 case 2:
                     System.out.println("System is closing..");
@@ -31,8 +30,7 @@ public class Test {
             }
         }
 
-
-
-
     }
+
 }
+

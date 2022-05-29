@@ -11,7 +11,7 @@ public class Level {
     protected Tank tank;
     protected Healer healer;
     protected Enemy enemy;
-
+    //3 levelde bir rastgele silah olsunint levelCounter = -1;
     int enemyNumber= (int) Math.pow(2,levelID);
 
     public Level() {
@@ -28,5 +28,10 @@ public class Level {
         System.out.println("Which character do you choose for attack?");
     }
 
+ /*  if (levelID % 3 == 2){
+            System.out.println("There is a weapon or armor in this level that you can obtain after defeating all enemies.");
+            //3 levelde bir silah olsun
+        }
 
+       */
 }
