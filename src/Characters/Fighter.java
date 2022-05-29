@@ -1,11 +1,13 @@
 package Characters;
 
-import Characters.Character;
+
+import GameThings.Level;
 import Items.Sword;
 
 import java.util.Random;
 
 public class Fighter extends Character {
+    protected Level level1;
 
 
     public Fighter(int maxStrength, int maxVitality, int maxIntelligence, int maxHP) {
@@ -13,7 +15,7 @@ public class Fighter extends Character {
         float maxHp = (float) (getMaxIntelligence()*0.1 + getMaxVitality()*0.7 + getMaxStrength()*0.2);
         System.out.println("Fighter generated. Strength:" + getMaxStrength()+ " Vitality:"+ getMaxVitality() + " Intelligence:" + getMaxIntelligence() + " HP:" + maxHp);
              this.setWeapon(new Sword("Sword ",5,2,4));
-        System.out.println("***Fighter equipped the sword ***  Sword name: " + getWeapon().getName() + " Weight: " +  getWeapon().getWeight() + " Value: " + getWeapon().getValue() + " Damage: " + 4);
+        System.out.println("***Fighter equipped the sword ***  Sword name: " + getWeapon().getName() + " Weight: " +  getWeapon().getWeight() + " Value: " + getWeapon().getValue() + " Damage: " + getWeapon().getDamage());
     }
 
     public static int generateRandomValue(int upperBound, int lowerBound){
@@ -22,5 +24,9 @@ public class Fighter extends Character {
         return value;
     }
 
-
+    @Override
+    public void attack() {
+        super.attack();
+        System.out.println("Fighter does " + (getWeapon().getDamage()*getMaxStrength()) + " damage.");
+    }
 }

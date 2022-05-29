@@ -10,12 +10,14 @@ import Items.Sword;
 import Items.Wand;
 import Items.Weapon;
 
+
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
-
+    Scanner sc = new Scanner(System.in);
     protected Fighter fighter;
     protected Healer healer;
     protected Tank tank;
@@ -26,9 +28,9 @@ public class Game {
     protected Sword sword;
     protected Shield shield;
     protected Wand wand;
+    protected Character character;
 
     public void login(){
-        Scanner sc = new Scanner(System.in);
         System.out.println("Please enter your name : ");
         String playerName =sc.next();
     }
@@ -53,6 +55,7 @@ public class Game {
         //o yuzden karakter olusturmayi basa aldim.
         System.out.println("Welcome to Cannon Fodder!");
         System.out.println("--------------------------------");
+        login();
         generateTank();
         generateFighter();
         generateHealer();
@@ -64,12 +67,26 @@ public class Game {
         firstCharacters.add(this.enemy);
         currentLevel = new Level();
         currentLevel.levelID++;
+
         //levels.add(currentLevel); bunda null erroru veriyor.
         //currentLevel.characterArrayList = firstCharacters;
     }
 
     public void runGame(){
-
+        currentLevel.Menu();
+        String chaChoice = sc.next();
+        if (chaChoice.contains("Fighter") || chaChoice.contains("fighter")){
+            System.out.println("Fighter attack Enemy" + (currentLevel.levelID));
+            fighter.attack();
+        }
+        else if (chaChoice.contains("Healer") || chaChoice.contains("healer")){
+            System.out.println("Healer attack Enemy" + (currentLevel.levelID));
+            healer.attack();
+        }
+        else if (chaChoice.contains("Tank") || chaChoice.contains("tank")){
+            System.out.println("Tank attack Enemy" + (currentLevel.levelID));
+            tank.attack();
+        }
     }
 
 

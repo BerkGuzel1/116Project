@@ -6,6 +6,15 @@ public class Items {
     private String name;
     private int weight;
     private int value;
+    private int damage;
+
+    public int getDamage() {
+        return damage;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
 
     public String getName() {
         return name;
@@ -31,10 +40,11 @@ public class Items {
         this.value = value;
     }
 
-    public Items(String name, int weight, int value) {
+    public Items(String name, int weight, int value,int damage) {
         this.name = name;
         this.weight = weight;
         this.value = value;
+        this.damage = damage;
     }
     public void showInfo() {
         System.out.println("The name of this item is: " + name);

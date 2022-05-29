@@ -4,9 +4,6 @@ import Items.Items;
 import Items.Weapon;
 
 
-import java.util.ArrayList;
-import java.util.Scanner;
-
 public class Character {
     private int HP;
     private int vitality;
@@ -35,7 +32,7 @@ public class Character {
     }
 
     public void attack() {
-        System.out.println();
+
     }
 
 
@@ -55,6 +52,13 @@ public class Character {
     public void listInventory() {
     }
 
+    public String getChoosenCha() {
+        return choosenCha;
+    }
+
+    public void setChoosenCha(String choosenCha) {
+        this.choosenCha = choosenCha;
+    }
 
     public int getMaxStrength() {
         return maxStrength;

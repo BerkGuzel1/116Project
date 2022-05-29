@@ -16,6 +16,7 @@ public class Test {
             switch (choice) {
                 case 0:
                     game.startGame();
+                    game.runGame();
                     break;
 
                 case 1:
