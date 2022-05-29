@@ -11,7 +11,6 @@ public class Character {
     private int strength;
 
 
-    private int damagetaken;
     private Weapon weapon;
     private Items armor;
     private String choosenCha;
@@ -35,6 +34,9 @@ public class Character {
 
     }
 
+    public void takeDamage() {
+
+    }
 
     public void pick() {
 
@@ -52,13 +54,6 @@ public class Character {
     public void listInventory() {
     }
 
-    public String getChoosenCha() {
-        return choosenCha;
-    }
-
-    public void setChoosenCha(String choosenCha) {
-        this.choosenCha = choosenCha;
-    }
 
     public int getMaxStrength() {
         return maxStrength;
@@ -122,16 +117,6 @@ public class Character {
 
     public void setStrength(int strength) {
         this.strength = strength;
-    }
-
-
-
-    public int getDamagetaken() {
-        return damagetaken;
-    }
-
-    public void setDamagetaken(int damagetaken) {
-        this.damagetaken = damagetaken;
     }
 
     public Items getWeapon() {

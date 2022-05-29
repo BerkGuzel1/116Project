@@ -22,7 +22,7 @@ public class Items {
         this.name = name;
     }
 
-    public boolean getWeight() {
+    public int getWeight() {
         return weight;
     }
 

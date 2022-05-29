@@ -29,4 +29,10 @@ public class Fighter extends Character {
         super.attack();
         System.out.println("Fighter does " + (getWeapon().getDamage()*getMaxStrength()) + " damage.");
     }
+
+    @Override
+    public void takeDamage() {
+        super.takeDamage();
+
+    }
 }

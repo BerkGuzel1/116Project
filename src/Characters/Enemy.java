@@ -1,11 +1,11 @@
 package Characters;
 
-import Characters.Character;
+
 import Items.Shield;
 import Items.Sword;
 import Items.Wand;
 
-import java.util.EventListener;
+
 import java.util.Random;
 
 public class Enemy extends Character {
@@ -23,10 +23,10 @@ public class Enemy extends Character {
         int value = rand.nextInt(upperBound) +1 ;
         return value;
     }
+    float maxHp = (float) (getMaxIntelligence()*0.1 + getMaxVitality()*0.7 + getMaxStrength()*0.2);
 
     public Enemy(int maxStrength, int maxVitality, int maxIntelligence, int maxHP) {
         super(generateValue1to5(), generateValue1to5(), generateValue1to5(), generateValue1to5());
-        float maxHp = (float) (getMaxIntelligence()*0.1 + getMaxVitality()*0.7 + getMaxStrength()*0.2);
         System.out.println("Enemy generated. Strength:" + getMaxStrength()+ " Vitality:"+ getMaxVitality() + " Intelligence:" + getMaxIntelligence() + " HP:" + maxHp);
         int rnd = generateValue1to10();
         if (rnd >=1 && rnd<9){
@@ -44,6 +44,7 @@ public class Enemy extends Character {
         }
     }
 
+
     @Override
     public void attack() {
         super.attack();
@@ -57,5 +58,10 @@ public class Enemy extends Character {
             System.out.println("Enemy does " + (getWeapon().getDamage() * getMaxStrength()) + " damage.");
         }
 
+    }
+
+    @Override
+    public void takeDamage() {
+        super.takeDamage();
     }
 }
