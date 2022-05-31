@@ -4,7 +4,7 @@ import Items.Items;
 
 public class Weapon extends Items {
 
-    public Weapon(String name, int weight, int value,int damage) {
+    public Weapon(String name, int weight, int value,double damage) {
         super(name, weight, value,damage);
     }
 

@@ -35,12 +35,15 @@ public class Game {
         String playerName =sc.next();
     }
 
-    public boolean isOver(){
-        if(fighter.getHP() == 0 && healer.getHP()==0 && tank.getHP()==0){
-            return true;
+    public void isOver(){
+        if(fighter.getMaxHP() == 0 && healer.getMaxHP()==0 && tank.getMaxHP()==0){
+            System.out.println("You lose,game finished.");
+        System.exit(0);
+        }
+        else if(enemy.getMaxHP() == 0){
+            System.out.println("You killed the enemies.Well done!");
         }
         else {
-            return false;
         }
     }
     public static int generateRandomValue(int upperBound, int lowerBound){
@@ -75,21 +78,25 @@ public class Game {
     public void runGame(){
         currentLevel.Menu();
         String chaChoice = sc.next();
-        if (chaChoice.contains("Fighter") || chaChoice.contains("fighter")){
+        if (chaChoice.contains("Fighter") || chaChoice.contains("fighter") || chaChoice.contains("f")){
             System.out.println("Fighter attack Enemy" + currentLevel.levelID);
             fighter.attack();
-            System.out.println("Enemy " + currentLevel.levelID +  " has " + enemy.getMaxHP() + " left." );
+            enemy.takeDamage();
+            System.out.println("Enemy" + currentLevel.levelID +  " has " + enemy.getMaxHP() + " left." );
         }
-        else if (chaChoice.contains("Healer") || chaChoice.contains("healer")){
+        else if (chaChoice.contains("Healer") || chaChoice.contains("healer") || chaChoice.contains("h")){
             System.out.println("Healer attack Enemy" + currentLevel.levelID);
             healer.attack();
-            System.out.println("Enemy " + currentLevel.levelID +  " has " + enemy.getMaxHP() + " left." );
+            enemy.takeDamage();
+            System.out.println("Enemy" + currentLevel.levelID +  " has " + enemy.getMaxHP() + " left." );
         }
-        else if (chaChoice.contains("Tank") || chaChoice.contains("tank")){
+        else if (chaChoice.contains("Tank") || chaChoice.contains("tank") || chaChoice.contains("t")){
             System.out.println("Tank attack Enemy" + currentLevel.levelID);
             tank.attack();
-            System.out.println("Enemy " + currentLevel.levelID +  " has " + enemy.getMaxHP() + " HP left." );
+            enemy.takeDamage();
+            System.out.println("Enemy" + currentLevel.levelID +  " has " + enemy.getMaxHP() + " HP left." );
         }
+        isOver();
     }
 
 

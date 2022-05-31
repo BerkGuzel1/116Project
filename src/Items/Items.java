@@ -4,13 +4,13 @@ public class Items {
     private String name;
     private int weight;
     private int value;
-    private int damage;
+    private double damage;
 
-    public int getDamage() {
+    public double getDamage() {
         return damage;
     }
 
-    public void setDamage(int damage) {
+    public void setDamage(double damage) {
         this.damage = damage;
     }
 
@@ -38,7 +38,7 @@ public class Items {
         this.value = value;
     }
 
-    public Items(String name, int weight, int value,int damage) {
+    public Items(String name, int weight, int value,double damage) {
         this.name = name;
         this.weight = weight;
         this.value = value;

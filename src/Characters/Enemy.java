@@ -6,15 +6,14 @@ import Items.Sword;
 import Items.Wand;
 
 
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
 import java.util.Random;
 
 public class Enemy extends Character {
 
     private static int generateValue1to5(){
         Random rand = new Random();
-        int upperBound = 6;
-        int value = rand.nextInt(upperBound) ;
+        int upperBound = 5;
+        int value = rand.nextInt(upperBound) + 1 ;
         return value;
     }
 
@@ -33,7 +32,6 @@ public class Enemy extends Character {
         if (rnd >=1 && rnd<9){
             this.setWeapon(new Sword("Broken Sword",4,1,3));
             System.out.println("***Enemy equipped the sword ***  Sword name: " + getWeapon().getName() + " Weight: " +  getWeapon().getWeight() + " Value: " + getWeapon().getValue() + " Damage: " + getWeapon().getDamage());
-
         }
         else if(rnd== 9){
             this.setWeapon(new Wand("Broken Wand", 2,1,1));
@@ -51,7 +49,6 @@ public class Enemy extends Character {
         super.attack();
         if (getWeapon().getDamage() == 1) {
             System.out.println("Enemy does " + (getWeapon().getDamage() * getMaxIntelligence()) + " damage.");
-
         }
         else if (getWeapon().getDamage() == 2) {
             System.out.println("Enemy does " + (getWeapon().getDamage() * getMaxVitality()) + " damage.");
@@ -59,12 +56,14 @@ public class Enemy extends Character {
        else if (getWeapon().getDamage() == 1) {
             System.out.println("Enemy does " + (getWeapon().getDamage() * getMaxStrength()) + " damage.");
         }
-
     }
 
     @Override
     public void takeDamage() {
         super.takeDamage();
-        setTakenDamage((int) (maxHp - getTakenDamage()));
+        setMaxHP((int) maxHp - getTakenDamage());
     }
+
+
+
 }
