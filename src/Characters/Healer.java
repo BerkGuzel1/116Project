@@ -11,7 +11,7 @@ public class Healer extends Character {
     public Healer(int maxStrength, int maxVitality, int maxIntelligence, int maxHP) {
         super(generateRandomValue(7,3), generateRandomValue(5,1), generateRandomValue(10,6), generateRandomValue(5,1));
         System.out.println("Healer generated. Strength:" + getMaxStrength()+ " Vitality:"+ getMaxVitality() + " Intelligence:" + getMaxIntelligence() + " HP:" + maxHp);
-        this.setWeapon(new Wand("Wand ",2,1,1));
+        this.setWeapon(new Wand("Wand ",2,1,0.6));
         System.out.println("*** Healer equipped the wand ***  Wand name: " + getWeapon().getName() + " Weight: " +  getWeapon().getWeight() + " Value: " + getWeapon().getValue() + " Damage: " + getWeapon().getDamage());
 
     }
@@ -27,7 +27,7 @@ public class Healer extends Character {
     @Override
     public void attack() {
         super.attack();
-        System.out.println("Healer does " + (getWeapon().getDamage()*getMaxIntelligence()) + " damage.");
+        System.out.println("Healer does " + Math.round(getWeapon().getDamage()*getMaxIntelligence()) + " damage.");
  setTakenDamage((int) (getWeapon().getDamage()*getMaxIntelligence()));
 
     }

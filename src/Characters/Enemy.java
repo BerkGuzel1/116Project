@@ -30,15 +30,15 @@ public class Enemy extends Character {
         System.out.println("Enemy generated. Strength:" + getMaxStrength()+ " Vitality:"+ getMaxVitality() + " Intelligence:" + getMaxIntelligence() + " HP:" + maxHp);
         int rnd = generateValue1to10();
         if (rnd >=1 && rnd<9){
-            this.setWeapon(new Sword("Broken Sword",4,1,3));
+            this.setWeapon(new Sword("Broken Sword",4,1, 1.2));
             System.out.println("***Enemy equipped the sword ***  Sword name: " + getWeapon().getName() + " Weight: " +  getWeapon().getWeight() + " Value: " + getWeapon().getValue() + " Damage: " + getWeapon().getDamage());
         }
         else if(rnd== 9){
-            this.setWeapon(new Wand("Broken Wand", 2,1,1));
+            this.setWeapon(new Wand("Broken Wand", 2,1,0.5));
             System.out.println("***Enemy equipped the wand ***  Wand name: " + getWeapon().getName() + " Weight: " +  getWeapon().getWeight() + " Value: " + getWeapon().getValue() + " Damage: " + getWeapon().getDamage());
         }
         else if(rnd == 10){
-            this.setWeapon(new Shield("Broken Shield", 3,1,2));
+            this.setWeapon(new Shield("Broken Shield", 3,1,0.8));
             System.out.println("***Enemy equipped the shield ***  Shield name: " + getWeapon().getName() + " Weight: " +  getWeapon().getWeight() + " Value: " + getWeapon().getValue() + " Damage: " + getWeapon().getDamage());
         }
     }
@@ -57,13 +57,13 @@ public class Enemy extends Character {
             System.out.println("Enemy does " + (getWeapon().getDamage() * getMaxStrength()) + " damage.");
         }
     }
-
+/*
     @Override
     public void takeDamage() {
         super.takeDamage();
         setMaxHP((int) maxHp - getTakenDamage());
     }
 
-
+*/
 
 }
