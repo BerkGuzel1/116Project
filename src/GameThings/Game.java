@@ -93,10 +93,7 @@ public class Game {
                 healer.attack();
                 enemy.setMaxHP(enemy.getMaxHP() - healer.getWeapon().getDamage() * healer.getMaxIntelligence());
                 System.out.println("Enemy" + currentLevel.levelID + " has " + Math.round(enemy.getMaxHP()) + " HP left.");
-                System.out.println("Enemy" + currentLevel.levelID + " attack Healer" );
-                enemy.attack();
-                healer.setMaxHP(healer.getMaxHP() - enemy.getWeapon().getDamage() * enemy.getMaxIntelligence());
-                System.out.println("Healer has " + Math.round(healer.getMaxHP()) + " HP left.");
+
             } else if (chaChoice.contains("Tank") || chaChoice.contains("tank") || chaChoice.contains("t")) {
                 System.out.println("Tank attack Enemy" + currentLevel.levelID);
                 tank.attack();
@@ -105,6 +102,13 @@ public class Game {
             }
             System.out.println();
             levelUpOrFinish();
+           //Daha enemy atağını tam yapmadım, swordu varmış farz ediyorum.
+            if (Over) {
+                System.out.println("Enemy" + currentLevel.levelID + " attack Tank");
+                enemy.attack();
+                tank.setMaxHP(tank.getMaxHP() - enemy.getWeapon().getDamage() * enemy.getStrength());
+                System.out.println("Tank has " + Math.round(tank.getMaxHP()) + " HP left.");
+            }
         }
     }
 
