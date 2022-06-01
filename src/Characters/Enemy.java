@@ -47,23 +47,25 @@ public class Enemy extends Character {
     @Override
     public void attack() {
         super.attack();
-        if (getWeapon().getDamage() == 1) {
-            System.out.println("Enemy does " + (getWeapon().getDamage() * getMaxIntelligence()) + " damage.");
+        if (getWeapon().getDamage() == 0.5) {
+            System.out.println("Enemy does " + Math.round(getWeapon().getDamage() * getMaxIntelligence()) + " damage.");
+            setTakenDamage((int) (getWeapon().getDamage()*getMaxIntelligence()));
         }
-        else if (getWeapon().getDamage() == 2) {
-            System.out.println("Enemy does " + (getWeapon().getDamage() * getMaxVitality()) + " damage.");
+        else if (getWeapon().getDamage() == 0.8) {
+            System.out.println("Enemy does " + Math.round(getWeapon().getDamage() * getMaxVitality()) + " damage.");
+            setTakenDamage((int) (getWeapon().getDamage()*getMaxVitality()));
         }
-       else if (getWeapon().getDamage() == 1) {
-            System.out.println("Enemy does " + (getWeapon().getDamage() * getMaxStrength()) + " damage.");
-        }
+       else if (getWeapon().getDamage() == 1.2) {
+            System.out.println("Enemy does " + Math.round(getWeapon().getDamage() * getMaxStrength()) + " damage.");
+            setTakenDamage((int) (getWeapon().getDamage()*getMaxStrength()));
+       }
     }
-/*
+
     @Override
     public void takeDamage() {
         super.takeDamage();
-        setMaxHP((int) maxHp - getTakenDamage());
+        setMaxHP( maxHp - getTakenDamage());
     }
 
-*/
 
 }

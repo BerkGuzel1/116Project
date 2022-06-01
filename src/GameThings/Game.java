@@ -87,17 +87,23 @@ public class Game {
                 fighter.attack();
                 enemy.setMaxHP(enemy.getMaxHP() - fighter.getWeapon().getDamage() * fighter.getMaxStrength());
                 System.out.println("Enemy" + currentLevel.levelID + " has " + Math.round(enemy.getMaxHP()) + " HP left.");
+
             } else if (chaChoice.contains("Healer") || chaChoice.contains("healer") || chaChoice.contains("h")) {
                 System.out.println("Healer attack Enemy" + currentLevel.levelID);
                 healer.attack();
                 enemy.setMaxHP(enemy.getMaxHP() - healer.getWeapon().getDamage() * healer.getMaxIntelligence());
                 System.out.println("Enemy" + currentLevel.levelID + " has " + Math.round(enemy.getMaxHP()) + " HP left.");
+                System.out.println("Enemy" + currentLevel.levelID + " attack Healer" );
+                enemy.attack();
+                healer.setMaxHP(healer.getMaxHP() - enemy.getWeapon().getDamage() * enemy.getMaxIntelligence());
+                System.out.println("Healer has " + Math.round(healer.getMaxHP()) + " HP left.");
             } else if (chaChoice.contains("Tank") || chaChoice.contains("tank") || chaChoice.contains("t")) {
                 System.out.println("Tank attack Enemy" + currentLevel.levelID);
                 tank.attack();
                 enemy.setMaxHP(enemy.getMaxHP() - tank.getWeapon().getDamage() * tank.getMaxVitality());
                 System.out.println("Enemy" + currentLevel.levelID + " has " + Math.round(enemy.getMaxHP()) + " HP left.");
             }
+            System.out.println();
             levelUpOrFinish();
         }
     }

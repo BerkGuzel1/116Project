@@ -11,7 +11,7 @@ public class Character {
     private int strength;
 
 
-    private int takenDamage;
+    private double takenDamage;
     private Weapon weapon;
     private Items armor;
     private String choosenCha;
@@ -55,11 +55,11 @@ public class Character {
     public void listInventory() {
     }
 
-    public int getTakenDamage() {
+    public double getTakenDamage() {
         return takenDamage;
     }
 
-    public void setTakenDamage(int takenDamage) {
+    public void setTakenDamage(double takenDamage) {
         this.takenDamage = takenDamage;
     }
 

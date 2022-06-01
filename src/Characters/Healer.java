@@ -2,7 +2,7 @@ package Characters;
 
 import Items.Wand;
 
-import java.math.RoundingMode;
+
 import java.util.Random;
 
 public class Healer extends Character {
@@ -28,13 +28,13 @@ public class Healer extends Character {
     public void attack() {
         super.attack();
         System.out.println("Healer does " + Math.round(getWeapon().getDamage()*getMaxIntelligence()) + " damage.");
- setTakenDamage((int) (getWeapon().getDamage()*getMaxIntelligence()));
+ setTakenDamage(getWeapon().getDamage()*getMaxIntelligence());
 
     }
 
     @Override
     public void takeDamage() {
         super.takeDamage();
-        setMaxHP((int) maxHp - getTakenDamage());
+        setMaxHP( maxHp - getTakenDamage());
     }
 }

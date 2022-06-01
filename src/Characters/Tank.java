@@ -31,6 +31,6 @@ public class Tank extends Character {
     @Override
     public void takeDamage() {
         super.takeDamage();
-        setMaxHP((int) maxHp - getTakenDamage());
+        setMaxHP( maxHp - getTakenDamage());
     }
 }
