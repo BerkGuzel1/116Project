@@ -65,6 +65,7 @@ public class Enemy extends Character {
     public void takeDamage() {
         super.takeDamage();
         setMaxHP( maxHp - getTakenDamage());
+
     }
 
 
