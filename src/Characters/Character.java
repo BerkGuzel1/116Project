@@ -11,6 +11,7 @@ public class Character {
     private int strength;
 
 
+    private double takenDamage;
     private Weapon weapon;
     private Items armor;
     private String choosenCha;
@@ -20,9 +21,9 @@ public class Character {
     private int maxStrength;
     private int maxVitality;
     private int maxIntelligence;
-    private int maxHP;
+    private double maxHP;
 
-    public Character(int maxStrength, int maxVitality, int maxIntelligence, int maxHP) {
+    public Character(int maxStrength, int maxVitality, int maxIntelligence, double maxHP) {
         this.maxStrength = maxStrength;
         this.maxVitality = maxVitality;
         this.maxIntelligence = maxIntelligence;
@@ -54,6 +55,13 @@ public class Character {
     public void listInventory() {
     }
 
+    public double getTakenDamage() {
+        return takenDamage;
+    }
+
+    public void setTakenDamage(double takenDamage) {
+        this.takenDamage = takenDamage;
+    }
 
     public int getMaxStrength() {
         return maxStrength;
@@ -79,11 +87,11 @@ public class Character {
         this.maxIntelligence = maxIntelligence;
     }
 
-    public int getMaxHP() {
+    public double getMaxHP() {
         return maxHP;
     }
 
-    public void setMaxHP(int maxHP) {
+    public void setMaxHP(double maxHP) {
         this.maxHP = maxHP;
     }
 
@@ -134,4 +142,5 @@ public class Character {
     public void setArmor(Items armor) {
         this.armor = armor;
     }
+
 }

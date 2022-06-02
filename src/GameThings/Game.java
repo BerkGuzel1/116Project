@@ -35,13 +35,19 @@ public class Game {
         String playerName =sc.next();
     }
 
-    public boolean isOver(){
-        if(fighter.getHP() == 0 && healer.getHP()==0 && tank.getHP()==0){
-            return true;
+    boolean Over = true;
+    public void levelUpOrFinish() {
+        if (fighter.getMaxHP() <= 0 && healer.getMaxHP() <= 0 && tank.getMaxHP() <= 0) {
+            System.out.println("You lose,game finished.");
+            Over = false;
+            System.exit(0);
+        } else if (enemy.getMaxHP() <= 0) {
+            System.out.println("You killed the enemies.Well done!");
+            Over = false;
         }
-        else {
-            return false;
-        }
+            else{
+            }
+
     }
     public static int generateRandomValue(int upperBound, int lowerBound){
         Random rand = new Random();
@@ -72,28 +78,39 @@ public class Game {
         //currentLevel.characterArrayList = firstCharacters;
     }
 
-    public void runGame(){
-        currentLevel.Menu();
+    public void runGame() {
+        while (Over) {
+            currentLevel.Menu();
         String chaChoice = sc.next();
-        if (chaChoice.contains("Fighter") || chaChoice.contains("fighter")){
-            System.out.println("Fighter attack Enemy" + currentLevel.levelID);
-            fighter.attack();
-            System.out.println("Enemy " + currentLevel.levelID +  " has " + enemy.getMaxHP() + " left." );
-        }
-        else if (chaChoice.contains("Healer") || chaChoice.contains("healer")){
-            System.out.println("Healer attack Enemy" + currentLevel.levelID);
-            healer.attack();
-            System.out.println("Enemy " + currentLevel.levelID +  " has " + enemy.getMaxHP() + " left." );
+            if (chaChoice.contains("Fighter") || chaChoice.contains("fighter") || chaChoice.contains("f")) {
+                System.out.println("Fighter attack Enemy" + currentLevel.levelID);
+                fighter.attack();
+                enemy.setMaxHP(enemy.getMaxHP() - fighter.getWeapon().getDamage() * fighter.getMaxStrength());
+                System.out.println("Enemy" + currentLevel.levelID + " has " + Math.round(enemy.getMaxHP()) + " HP left.");
 
-        }
-        else if (chaChoice.contains("Tank") || chaChoice.contains("tank")){
-            System.out.println("Tank attack Enemy" + currentLevel.levelID);
-            tank.attack();
-            System.out.println("Enemy " + currentLevel.levelID +  " has " + enemy.getMaxHP() + " left." );
+            } else if (chaChoice.contains("Healer") || chaChoice.contains("healer") || chaChoice.contains("h")) {
+                System.out.println("Healer attack Enemy" + currentLevel.levelID);
+                healer.attack();
+                enemy.setMaxHP(enemy.getMaxHP() - healer.getWeapon().getDamage() * healer.getMaxIntelligence());
+                System.out.println("Enemy" + currentLevel.levelID + " has " + Math.round(enemy.getMaxHP()) + " HP left.");
 
+            } else if (chaChoice.contains("Tank") || chaChoice.contains("tank") || chaChoice.contains("t")) {
+                System.out.println("Tank attack Enemy" + currentLevel.levelID);
+                tank.attack();
+                enemy.setMaxHP(enemy.getMaxHP() - tank.getWeapon().getDamage() * tank.getMaxVitality());
+                System.out.println("Enemy" + currentLevel.levelID + " has " + Math.round(enemy.getMaxHP()) + " HP left.");
+            }
+            System.out.println();
+            levelUpOrFinish();
+           //Daha enemy atağını tam yapmadım, swordu varmış farz ediyorum.
+            if (Over) {
+                System.out.println("Enemy" + currentLevel.levelID + " attack Tank");
+                enemy.attack();
+                tank.setMaxHP(tank.getMaxHP() - enemy.getWeapon().getDamage() * enemy.getStrength());
+                System.out.println("Tank has " + Math.round(tank.getMaxHP()) + " HP left.");
+            }
         }
     }
-
 
     public void generateTank(){
         tank = new Tank(generateRandomValue(5,1),
