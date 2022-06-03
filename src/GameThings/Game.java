@@ -5,11 +5,7 @@ import Characters.Enemy;
 import Characters.Fighter;
 import Characters.Healer;
 import Characters.Tank;
-import Items.Shield;
-import Items.Sword;
-import Items.Wand;
-import Items.Weapon;
-
+import Items.*;
 
 
 import java.util.ArrayList;
@@ -29,6 +25,8 @@ public class Game {
     protected Shield shield;
     protected Wand wand;
     protected Character character;
+    protected Inventory inventory;
+    protected Equipment equipment;
 
     public void login(){
         System.out.println("Please enter your name : ");
@@ -41,11 +39,20 @@ public class Game {
             System.out.println("You lose,game finished.");
             Over = false;
             System.exit(0);
-        } else if (enemy.getMaxHP() <= 0) {
+        } else if (enemy.getMaxHP() <= 0.5) {
             System.out.println("You killed the enemies.Well done!");
+            System.out.println("Type next for level " +  currentLevel.levelID++);
+            String choice = sc.next();
+            if (choice.contains("next") || choice.contains("Next")){
+
+            }
+            else {
+                System.exit(0);
+            }
             Over = false;
         }
             else{
+
             }
 
     }
@@ -81,7 +88,7 @@ public class Game {
     public void runGame() {
         while (Over) {
             currentLevel.Menu();
-        String chaChoice = sc.next();
+            String chaChoice = sc.next();
             if (chaChoice.contains("Fighter") || chaChoice.contains("fighter") || chaChoice.contains("f")) {
                 System.out.println("Fighter attack Enemy" + currentLevel.levelID);
                 fighter.attack();
@@ -92,7 +99,7 @@ public class Game {
                 System.out.println("Healer attack Enemy" + currentLevel.levelID);
                 healer.attack();
                 enemy.setMaxHP(enemy.getMaxHP() - healer.getWeapon().getDamage() * healer.getMaxIntelligence());
-                System.out.println("Enemy" + currentLevel.levelID + " has " + Math.round(enemy.getHP()) + " HP left.");
+                System.out.println("Enemy" + currentLevel.levelID + " has " + Math.round(enemy.getMaxHP()) + " HP left.");
 
             } else if (chaChoice.contains("Tank") || chaChoice.contains("tank") || chaChoice.contains("t")) {
                 System.out.println("Tank attack Enemy" + currentLevel.levelID);
@@ -102,13 +109,13 @@ public class Game {
             }
             System.out.println();
             levelUpOrFinish();
-           //Daha enemy atağını tam yapmadım, swordu varmış farz ediyorum.
-            if (Over) {
-                System.out.println("Enemy" + currentLevel.levelID + " attack Tank");
-                enemy.attack();
-                tank.setMaxHP(tank.getMaxHP() - enemy.getWeapon().getDamage() * enemy.getStrength());
-                System.out.println("Tank has " + Math.round(tank.getMaxHP()) + " HP left.");
-            }
+            //Daha enemy atağını tam yapmadım, swordu varmış farz ediyorum.
+            if (Over){
+                System.out.println("Enemy" + currentLevel.levelID + " attack Tank.");
+            enemy.attack();
+            tank.setMaxHP(tank.getMaxHP() - enemy.getWeapon().getDamage() * enemy.getStrength());
+            System.out.println("Tank has " + Math.round(tank.getMaxHP()) + " HP left.");
+        }
         }
     }
 

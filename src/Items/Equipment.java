@@ -14,4 +14,5 @@ public class Equipment extends ArrayList<Items> {
     public void showEquipments(Equipment Equipment) {
         System.out.println("You equipped these: " + Equipment.get(0));
     }
+
 }

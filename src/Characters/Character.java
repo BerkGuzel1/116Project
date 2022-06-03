@@ -50,6 +50,7 @@ public class Character {
     }
 
     public void examine() {
+
     }
 
     public void listInventory() {

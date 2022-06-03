@@ -30,15 +30,15 @@ public class Enemy extends Character {
         System.out.println("Enemy generated. Strength:" + getMaxStrength()+ " Vitality:"+ getMaxVitality() + " Intelligence:" + getMaxIntelligence() + " HP:" + maxHp);
         int rnd = generateValue1to10();
         if (rnd >=1 && rnd<9){
-            this.setWeapon(new Sword("Broken Sword",4,1, 1.2));
+            this.setWeapon(new Sword("Broken Sword",4,1, 0.5));
             System.out.println("***Enemy equipped the sword ***  Sword name: " + getWeapon().getName() + " Weight: " +  getWeapon().getWeight() + " Value: " + getWeapon().getValue() + " Damage: " + getWeapon().getDamage());
         }
         else if(rnd== 9){
-            this.setWeapon(new Wand("Broken Wand", 2,1,0.5));
+            this.setWeapon(new Wand("Broken Wand", 2,1,0.05));
             System.out.println("***Enemy equipped the wand ***  Wand name: " + getWeapon().getName() + " Weight: " +  getWeapon().getWeight() + " Value: " + getWeapon().getValue() + " Damage: " + getWeapon().getDamage());
         }
         else if(rnd == 10){
-            this.setWeapon(new Shield("Broken Shield", 3,1,0.8));
+            this.setWeapon(new Shield("Broken Shield", 3,1,0.3));
             System.out.println("***Enemy equipped the shield ***  Shield name: " + getWeapon().getName() + " Weight: " +  getWeapon().getWeight() + " Value: " + getWeapon().getValue() + " Damage: " + getWeapon().getDamage());
         }
     }
@@ -47,15 +47,15 @@ public class Enemy extends Character {
     @Override
     public void attack() {
         super.attack();
-        if (getWeapon().getDamage() == 0.5) {
+        if (getWeapon().getDamage() == 0.1) {
             System.out.println("Enemy does " + Math.round(getWeapon().getDamage() * getMaxIntelligence()) + " damage.");
             setTakenDamage((int) (getWeapon().getDamage()*getMaxIntelligence()));
         }
-        else if (getWeapon().getDamage() == 0.8) {
+        else if (getWeapon().getDamage() == 0.3) {
             System.out.println("Enemy does " + Math.round(getWeapon().getDamage() * getMaxVitality()) + " damage.");
             setTakenDamage((int) (getWeapon().getDamage()*getMaxVitality()));
         }
-       else if (getWeapon().getDamage() == 1.2) {
+       else if (getWeapon().getDamage() == 0.5) {
             System.out.println("Enemy does " + Math.round(getWeapon().getDamage() * getMaxStrength()) + " damage.");
             setTakenDamage((int) (getWeapon().getDamage()*getMaxStrength()));
        }
