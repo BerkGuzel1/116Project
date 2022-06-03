@@ -47,15 +47,15 @@ public class Enemy extends Character {
     @Override
     public void attack() {
         super.attack();
-        if (getWeapon().getDamage() == 0.1) {
+        if (getWeapon() instanceof Wand) {
             System.out.println("Enemy does " + Math.round(getWeapon().getDamage() * getMaxIntelligence()) + " damage.");
             setTakenDamage((int) (getWeapon().getDamage()*getMaxIntelligence()));
         }
-        else if (getWeapon().getDamage() == 0.3) {
+        else if (getWeapon() instanceof Shield) {
             System.out.println("Enemy does " + Math.round(getWeapon().getDamage() * getMaxVitality()) + " damage.");
             setTakenDamage((int) (getWeapon().getDamage()*getMaxVitality()));
         }
-       else if (getWeapon().getDamage() == 0.5) {
+       else if (getWeapon() instanceof Sword) {
             System.out.println("Enemy does " + Math.round(getWeapon().getDamage() * getMaxStrength()) + " damage.");
             setTakenDamage((int) (getWeapon().getDamage()*getMaxStrength()));
        }
