@@ -1,11 +1,3 @@
-package Characters;
-
-
-import Items.Shield;
-import Items.Sword;
-import Items.Wand;
-
-
 import java.util.Random;
 
 public class Enemy extends Character {

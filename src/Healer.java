@@ -1,8 +1,3 @@
-package Characters;
-
-import Items.Wand;
-
-
 import java.util.Random;
 
 public class Healer extends Character {

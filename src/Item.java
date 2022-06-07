@@ -1,6 +1,4 @@
-package Items;
-
-public class Items {
+public class Item {
     private String name;
     private int weight;
     private int value;
@@ -38,7 +36,7 @@ public class Items {
         this.value = value;
     }
 
-    public Items(String name, int weight, int value,double damage) {
+    public Item(String name, int weight, int value, double damage) {
         this.name = name;
         this.weight = weight;
         this.value = value;

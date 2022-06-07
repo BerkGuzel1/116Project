@@ -1,10 +1,8 @@
-package Items;
-
 import java.util.ArrayList;
 
-public class Equipment extends ArrayList<Items> {
+public class Equipment extends ArrayList<Item> {
     @Override
-    public boolean add(Items items) {
+    public boolean add(Item items) {
         if (this.size() < 3) {
             return super.add(items);
         }

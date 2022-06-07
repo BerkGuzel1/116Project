@@ -1,13 +1,7 @@
-package Characters;
-
-
-import GameThings.Level;
-import Items.Sword;
-
 import java.util.Random;
 
 public class Fighter extends Character {
-    protected Level level1;
+
     float maxHp = (float) (getMaxIntelligence()*0.1 + getMaxVitality()*0.7 + getMaxStrength()*0.2);
 
     public Fighter(int maxStrength, int maxVitality, int maxIntelligence, int maxHP) {

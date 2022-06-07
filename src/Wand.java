@@ -1,5 +1,3 @@
-package Items;
-
 public class Wand extends Weapon {
 
     public Wand(String name, int weight, int value,double damage) {

@@ -1,9 +1,3 @@
-package Characters;
-
-import Items.Items;
-import Items.Weapon;
-
-
 public class Character {
     private int HP;
     private int vitality;
@@ -13,7 +7,7 @@ public class Character {
 
     private double takenDamage;
     private Weapon weapon;
-    private Items armor;
+    private Item armor;
     private String choosenCha;
 
 
@@ -128,7 +122,7 @@ public class Character {
         this.strength = strength;
     }
 
-    public Items getWeapon() {
+    public Item getWeapon() {
         return weapon;
     }
 
@@ -136,11 +130,11 @@ public class Character {
         this.weapon = weapon;
     }
 
-    public Items getArmor() {
+    public Item getArmor() {
         return armor;
     }
 
-    public void setArmor(Items armor) {
+    public void setArmor(Item armor) {
         this.armor = armor;
     }
 

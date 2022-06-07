@@ -1,8 +1,4 @@
-package Items;
-
-import Items.Items;
-
-public class Weapon extends Items {
+public class Weapon extends Item {
 
     public Weapon(String name, int weight, int value,double damage) {
         super(name, weight, value,damage);

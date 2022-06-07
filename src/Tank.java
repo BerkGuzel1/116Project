@@ -1,7 +1,3 @@
-package Characters;
-
-import Items.Shield;
-
 import java.util.Random;
 
 public class Tank extends Character {

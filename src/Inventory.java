@@ -1,10 +1,9 @@
-package Items;
 import java.util.ArrayList;
 
-public class Inventory extends ArrayList<Items>{
+public class Inventory extends ArrayList<Item>{
 
     @Override
-    public boolean add(Items items){
+    public boolean add(Item items){
         if (this.size()<8){
             return super.add(items);
 
