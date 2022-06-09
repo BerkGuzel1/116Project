@@ -1,141 +1,281 @@
-public class Character {
-    private int HP;
-    private int vitality;
-    private int intelligence;
-    private int strength;
+import java.util.ArrayList;
+import java.util.Scanner;
 
+public abstract class Character {
+    protected long HP;
+    protected String name;
+    protected int vitality;
+    protected int intelligence;
+    protected int strength;
+    protected ArrayList<Item> inventory;
+    protected Weapon handledWeapon;
+    protected Armor wornArmor;
+    private final Scanner sc= new Scanner(System.in);
 
-    private double takenDamage;
-    private Weapon weapon;
-    private Item armor;
-    private String choosenCha;
-
-
-    //max values a character can have on a level
-    private int maxStrength;
-    private int maxVitality;
-    private int maxIntelligence;
-    private double maxHP;
-
-    public Character(int maxStrength, int maxVitality, int maxIntelligence, double maxHP) {
-        this.maxStrength = maxStrength;
-        this.maxVitality = maxVitality;
-        this.maxIntelligence = maxIntelligence;
-        this.maxHP = maxHP;
-
+    public Character(String name,Weapon handledWeapon, Armor wornArmor) {
+        this.name = name;
+        this.inventory = new ArrayList<>();
+        this.handledWeapon = handledWeapon;
+        this.wornArmor = wornArmor;
     }
 
-    public void attack() {
 
+
+    public void printInfo(Character character){
+        System.out.println("Strength: " + character.getStrength());
+        System.out.println("Vitality: " + character.getVitality());
+        System.out.println("Intelligence: " + character.getIntelligence());
+        System.out.println("HP: " + getHP());
+        getHandledWeapon().printInfo();
+        getWornArmor().printInfo();
+        int counter1 =  0 ;
+        for (int i = 0; i < inventory.size(); i++) {
+            inventory.get(i).printInfo();
+            System.out.println();
+            counter1++;
+        }
+            if (counter1 == 0){
+                System.out.println("Inventory has no item.");
+            }
+            int counter2 =0;
+        for (int i = 0; i < inventory.size(); i++) {
+            inventory.get(i).printInfo();
+            System.out.println();
+            counter2++;
+        }  if (counter2 == 0){
+            System.out.println("Inventory has no item.");
+        }
+        }
+
+    public double attack() {
+if (getHandledWeapon() != null){
+    if (getHandledWeapon().getType().equals("sword")){
+        return getHandledWeapon().getDamage()*getStrength();
+    }
+    else if (getHandledWeapon().getType().equals("shield")){
+        return getHandledWeapon().getDamage()*getVitality();
+    }
+    else {
+        return getHandledWeapon().getDamage()*getIntelligence();
+    }
+}
+else {
+    System.out.println("You did not handle a weapon");
+}
+        return 0;
     }
 
-    public void takeDamage() {
-
+    public double calculateWeight(){
+        double total = 0;
+        for (int i = 0; i < inventory.size(); i++) {
+       total = total + inventory.get(i).getWeight();
+        }
+        total = total + handledWeapon.getWeight() + wornArmor.getWeight() ;
+    return total;
     }
 
-    public void pick() {
-
+    public void printInventory(){
+        for (int i = 0; i < inventory.size(); i++) {
+            System.out.println((i+1) + inventory.get(i).getName() + " weights " + inventory.get(i).getWeight());
+        }
     }
 
-    public void wield() {
+    public void add(Item item) {
+        double total = calculateWeight();
+
+        if (item.getCategory().equals("armor")) {
+            if ((total + item.getWeight()) <= strength) {
+                inventory.add(item);
+
+                System.out.println(item.getName() + " picked");
+            } else {
+                boolean full = true;
+                while (full) {
+                    System.out.println("Inventory is full.You must drop an item ");
+                    if (strength >= total + item.getWeight()) {
+                        full = false;
+                    }
+                }
+                if (strength >= total + item.getWeight()) {
+                    inventory.add(item);
+                }
+            }
+        } else if (item.getCategory().equals("weapon")) {
+                if ((total + item.getWeight()) <= strength) {
+                    inventory.add(item);
+                    System.out.println(item.getName() + " picked");
+                } else {
+                    boolean full1 = true;
+                    while (full1) {
+                        System.out.println("Inventory is full.You must drop an item.");
+                        if (strength >= total + item.getWeight()) {
+                            full1 = false;
+                        }
+                    }
+                    if (strength >= total + item.getWeight()) {
+                        inventory.add(item);
+                    }
+                }
+        }
+        }
+
+    public Item drop() {
+        System.out.println("Your inventory is");
+        printInventory();
+
+        System.out.println("Which item do you want to drop?");
+        int dropping = sc.nextInt();
+        dropping = dropping - 1;
+
+        if (inventory.get(dropping).getCategory().equals("armor")) {
+            System.out.println(inventory.get(dropping).getName() + "removed");
+            int counter = 0;
+            while (counter < inventory.size()) {
+                if (inventory.get(counter) == inventory.get(dropping)) {
+                    break;
+                } else {
+                    counter++;
+                }
+            }
+            Item tempItem = inventory.get(dropping);
+            inventory.remove(counter);
+            return tempItem;
+        } else if (inventory.get(dropping).getCategory().equals("weapon")) {
+            System.out.println(inventory.get(dropping).getName() + "removed");
+            int counter = 0;
+            while (counter < inventory.size()) {
+                if (inventory.get(counter) == inventory.get(dropping)) {
+                    break;
+                } else {
+                    counter++;
+                }
+            }
+            Item tempItem = inventory.get(dropping);
+            inventory.remove(counter);
+            return tempItem;
+        }
+        return null;
     }
 
-    public void wear() {
+    public void changeHandledItem(){
+        System.out.println("Which item will you change \n Press 1 for Weapon \n Press 2 for Armor");
+        int choice = sc.nextInt();
+        switch (choice){
+            case 1:
+                inventory.add(handledWeapon);
+                System.out.println(handledWeapon.getName() + "has been put to inventory.");
+                handledWeapon = null;
+
+                System.out.println("Which weapon will you handle?");
+                System.out.println("This is inventory: ");
+                for (int i = 0; i < inventory.size(); i++) {
+                    System.out.println((i+1) + inventory.get(i).getName());
+                }
+                System.out.println("Select weapon that you want to use");
+                int select = sc.nextInt();
+                select = select -1;
+                if (inventory.get(select) == null){
+                    System.out.println("Select valid integer.");
+                }
+                else {
+                    handledWeapon = (Weapon) inventory.get(select);
+                    inventory.remove(select);
+                }
+            case 2:
+                inventory.add(wornArmor);
+                System.out.println(wornArmor.getName() + "has been put to inventory.");
+                wornArmor = null;
+
+                System.out.println("Which armor will you wear?");
+                System.out.println("This is inventory: ");
+                for (int i = 0; i < inventory.size(); i++) {
+                    System.out.println((i+1) + inventory.get(i).getName());
+                }
+                System.out.println("Select armor that you want to wear");
+                int select2 = sc.nextInt();
+                select2 = select2 -1;
+                if (inventory.get(select2) == null){
+                    System.out.println("Select valid integer");
+                }
+                else {
+                    wornArmor =(Armor) inventory.get(select2);
+                    inventory.remove(select2);
+                }
+            default:
+                System.out.println("Enter valid integer");
+        break;
+        }
     }
 
-    public void examine() {
-
+    public void renewHP(int choice,double action){
+        if (choice == 1){
+            this.HP =(int) (this.HP - action);
+        }else if(choice == 2 && ((this.HP + action) > getMaxHP())){
+            this.HP = (int) getMaxHP();
+        }else if(choice == 2){
+            this.HP = (int) (getHP() + action);
+        }else{
+            System.out.println("Oops!");
+        }
     }
 
-    public void listInventory() {
-    }
-
-    public double getTakenDamage() {
-        return takenDamage;
-    }
-
-    public void setTakenDamage(double takenDamage) {
-        this.takenDamage = takenDamage;
-    }
-
-    public int getMaxStrength() {
-        return maxStrength;
-    }
-
-    public void setMaxStrength(int maxStrength) {
-        this.maxStrength = maxStrength;
-    }
-
-    public int getMaxVitality() {
-        return maxVitality;
-    }
-
-    public void setMaxVitality(int maxVitality) {
-        this.maxVitality = maxVitality;
-    }
-
-    public int getMaxIntelligence() {
-        return maxIntelligence;
-    }
-
-    public void setMaxIntelligence(int maxIntelligence) {
-        this.maxIntelligence = maxIntelligence;
-    }
-
-    public double getMaxHP() {
-        return maxHP;
-    }
-
-    public void setMaxHP(double maxHP) {
-        this.maxHP = maxHP;
-    }
-
-    public int getHP() {
+    public long getHP() {
         return HP;
     }
 
-    public void setHP(int HP) {
-        this.HP = HP;
+    public void setHP() {
+        this.HP = (int) Math.round(0.7*vitality + 0.2*strength + 0.1*intelligence);
+    }
+    public long getMaxHP(){
+        return Math.round(0.7*vitality + 0.2*strength + 0.1*intelligence);
     }
 
     public int getVitality() {
         return vitality;
     }
 
-    public void setVitality(int vitality) {
-        this.vitality = vitality;
-    }
+    public abstract void setVitality();
 
     public int getIntelligence() {
         return intelligence;
     }
 
-    public void setIntelligence(int intelligence) {
-        this.intelligence = intelligence;
-    }
+    public abstract void setIntelligence();
 
     public int getStrength() {
         return strength;
     }
 
-    public void setStrength(int strength) {
-        this.strength = strength;
+    public abstract void setStrength();
+
+    public ArrayList<Item> getInventory() {
+        return inventory;
     }
 
-    public Item getWeapon() {
-        return weapon;
+    public void setInventory(ArrayList<Item> inventory) {
+        this.inventory = inventory;
     }
 
-    public void setWeapon(Weapon weapon) {
-        this.weapon = weapon;
+    public Weapon getHandledWeapon() {
+        return handledWeapon;
     }
 
-    public Item getArmor() {
-        return armor;
+    public void setHandledWeapon(Weapon handledWeapon) {
+        this.handledWeapon = handledWeapon;
     }
 
-    public void setArmor(Item armor) {
-        this.armor = armor;
+    public Armor getWornArmor() {
+        return wornArmor;
     }
 
+    public void setWornArmor(Armor wornArmor) {
+        this.wornArmor = wornArmor;
+    }
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

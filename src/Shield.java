@@ -1,13 +1,11 @@
 public class Shield extends Weapon {
     public Shield(String name, int weight, int value, double damage) {
         super(name, weight, value,damage);
-    }
-    public void stun(){
+        super.type = "shield";
     }
 
-    @Override
-    public void specialAction() {
-        super.specialAction();
-        stun();
+    public long stun(Character character,Enemy enemy){
+        return Math.round(character.attack()/enemy.getVitality());
     }
+
 }

@@ -1,35 +1,32 @@
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Healer extends Character {
-    float maxHp = (float) (getMaxIntelligence()*0.1 + getMaxVitality()*0.7 + getMaxStrength()*0.2);
+    private static Random random = new Random();
 
-    public Healer(int maxStrength, int maxVitality, int maxIntelligence, int maxHP) {
-        super(generateRandomValue(7,3), generateRandomValue(5,1), generateRandomValue(10,6), generateRandomValue(5,1));
-        System.out.println("Healer generated. Strength:" + getMaxStrength()+ " Vitality:"+ getMaxVitality() + " Intelligence:" + getMaxIntelligence() + " HP:" + maxHp);
-        this.setWeapon(new Wand("Wand ",2,1,0.1));
-        System.out.println("*** Healer equipped the wand ***  Wand name: " + getWeapon().getName() + " Weight: " +  getWeapon().getWeight() + " Value: " + getWeapon().getValue() + " Damage: " + getWeapon().getDamage());
-
-    }
-
-
-
-    public static int generateRandomValue(int upperBound, int lowerBound){
-        Random rand = new Random();
-        int value = rand.nextInt(upperBound-lowerBound+1) + lowerBound;
-        return value;
+    public Healer(String name,Weapon handledWeapon, Armor wornArmor) {
+        super(name,handledWeapon,wornArmor);
+        setStrength();
+        super.strength = getStrength();
+        setIntelligence();
+        super.intelligence = getIntelligence();
+        setVitality();
+        super.vitality = getVitality();
+        setHP();
+        super.HP = getHP();
+        }
+    @Override
+    public void setStrength() {
+        super.strength = random.nextInt(3,7);
     }
 
     @Override
-    public void attack() {
-        super.attack();
-        System.out.println("Healer does " + Math.round(getWeapon().getDamage()*getMaxIntelligence()) + " damage.");
- setTakenDamage(getWeapon().getDamage()*getMaxIntelligence());
-
+    public void setVitality() {
+        super.vitality = random.nextInt(1,5);
     }
 
     @Override
-    public void takeDamage() {
-        super.takeDamage();
-        setMaxHP( maxHp - getTakenDamage());
+    public void setIntelligence() {
+        super.intelligence = random.nextInt(6,10);
     }
 }

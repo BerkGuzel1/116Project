@@ -1,10 +1,10 @@
 public class Sword extends Weapon {
     public Sword(String name, int weight, int value,double damage) {
         super(name, weight, value,damage);
+        super.type = "sword";
     }
+public long throwAway(Character character){
+        return Math.round(character.getStrength()/8);
+}
 
-    @Override
-    public void specialAction() {
-        super.specialAction();
-    }
 }

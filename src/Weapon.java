@@ -1,18 +1,32 @@
 public class Weapon extends Item {
+    protected  double damage;
+    protected String type;
 
-    public Weapon(String name, int weight, int value,double damage) {
-        super(name, weight, value,damage);
+    public double getDamage() {
+        return damage;
     }
 
-
-    public void specialAction(){
-
+    public void setDamage(double damage) {
+        this.damage = damage;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public Weapon(String name, int weight, int value, double damage) {
+        super(name, weight, value);
+        this.type = "Null";
+        this.category= "weapon";
+    }
 
     @Override
-    public String toString() {
-        return String.format("%-20sName: %-6dWeight: %-6d(Damage)",getName(),getWeight());
+    public void printInfo() {
+        super.printInfo();
+        System.out.println("Damage: " + getDamage());
     }
-
 }

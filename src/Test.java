@@ -1,338 +1,389 @@
+import javax.swing.*;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Test {
-
-    static ArrayList<Character> players = new ArrayList<>();
-    static ArrayList<Enemy> currentEnemies = new ArrayList<>();
-    static ArrayList<Item> droppedItems = new ArrayList<>();
-    static int level = 1;
-    static int round = 1;
-    static boolean game = true;
-    static Scanner sc = new Scanner(System.in);
-    protected Fighter fighter;
-    protected Healer healer;
-    protected Tank tank;
-    protected Enemy enemy;
-    boolean isOver;
+ private static Random random = new Random();
+ private static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
+        int level = 0;
+        int enemyCounter = 1;
+        int turn = 0;
+        ArrayList<Enemy> enemyArrayList = new ArrayList<>();
+        ArrayList<Item> itemArrayList = new ArrayList<>();
+        ArrayList<Character> characterArrayList = new ArrayList<>();
 
-        Scanner sc = new Scanner(System.in);
-        boolean isAlive = true;
-        System.out.println("CANNON FODDER");
-        System.out.println();
-        System.out.println("Press\n" +"0-START THE GAME\n1-DISPLAY SCOREBOARD\n2-EXIT");
+        Weapon sword = new Sword("Short Sword",2,2,2);
+        Armor fighterArmor = new LeatherArmor("Leather Armor",1 ,1);
+        Character fighter = new Fighter("fighter",sword,fighterArmor);
+        Weapon shield = new Shield("Short Shield",3,2,1);
+        Armor tankArmor = new LeatherArmor("Leather Armor",1 ,1);
+        Character tank = new Tank("tank",shield,tankArmor);
+        Weapon wand = new Wand("Short Wand",1,2,0.5);
+        Armor healerArmor = new LeatherArmor("Leather Armor",1 ,1);
+        Character healer = new Healer("healer",wand,healerArmor);
+        characterArrayList.add(fighter);
+        characterArrayList.add(tank);
+        characterArrayList.add(healer);
 
-        while (isAlive) {
-            int choice = sc.nextInt();
-            switch (choice) {
-                case 0:
-                    break;
+        System.out.println("   CANNON FODDER    ");
+        System.out.println("********************");
+        System.out.println("Your characters are:");
+       fighter.printInfo(fighter);
+       tank.printInfo(tank);
+       healer.printInfo(healer);
 
-                case 1:
-                    //Scoreboard
-                    break;
-                case 2:
-                    System.out.println("System is closing..");
-                    System.exit(0);
-                    break;
-                default:
-                    System.out.println("Try again!");
-            }
+       boolean game = true;
+       while (game) {
+           if (characterArrayList.size() > 0) {
+               System.out.println("Level" + level + " is generating..");
+               System.out.println("Enemy number: " + enemyCounter);
+               enemyGenerator(enemyCounter, enemyArrayList);
+               for (int i = 0; i < enemyArrayList.size(); i++) {
+                   System.out.println("Name: " + enemyArrayList.get(i).getName() + "with " + enemyArrayList.get(i).getHP() + " HP");
+               }
+               while (enemyArrayList.size() > 0) {
+                   int i = 0;
+                   for (int j = 0; j < enemyArrayList.size(); j++) {
+                       if (enemyArrayList.get(j).isBlock()) {
+                           enemyArrayList.get(j).setBlock(false);
+                       }
+                   }
+                   while (i < 3) {
+                       if (enemyArrayList.size() > 0) {
+                           System.out.println("Which character do you want to attack enter it's first letter:");
+                           String character = sc.next();
+                           character = character.toLowerCase();
+                           switch (character) {
+                               case "h":
+                                   System.out.println("You are playing with healer");
+                                   int index = 0;
+                                   for (int j = 0; j < characterArrayList.size(); j++) {
+                                       if (characterArrayList.get(j).getName().equals("healer")) {
+                                           index = j;
+                                       }
+                                   }
+                                   System.out.println("What do you want to do?");
+                                   System.out.println("Enter attack for attack");
+                                   System.out.println("Enter heal for heal tank or fighter");
+                                   System.out.println("Enter check for see if there any items on the grass");
+                                   System.out.println("Enter inventory for see inventory");
+                                   System.out.println("Enter wield for wield a weapon or armor");
+                                   String choice = sc.next();
+                                   choice = choice.toLowerCase();
+                                   switch (choice) {
+                                       case "attack":
+                                           System.out.println("Choose your target!");
+                                           for (int j = 0; j < enemyArrayList.size(); j++) {
+                                               System.out.println("Name: " + enemyArrayList.get(j).getName() + " HP: " + enemyArrayList.get(j).getHP());
+                                           }
+                                           String enemyChoice = sc.next();
+                                           enemyChoice = enemyChoice.toLowerCase();
+                                           int index1 = 0;
+                                           for (int j = 0; j < enemyArrayList.size(); j++) {
+                                               if (enemyArrayList.get(j).getName().toLowerCase().equals(enemyChoice)) {
+                                                   break;
+                                               }
+                                               index1++;
+                                           }
+                                           System.out.println("Healer attacked to " + enemyArrayList.get(index1).getName());
+                                           double damage = healer.attack();
+                                           enemyArrayList.get(index1).renewHP(1, damage);
+                                           System.out.println("Healer made " + damage + "damage.");
+                                           System.out.println(enemyArrayList.get(index1).getName() + " has " + enemyArrayList.get(index1).getHP() + " HP.");
+                                           if (enemyArrayList.get(index1).getHP() < 0) {
+                                               System.out.println(enemyArrayList.get(index1).getName() + " is dead.");
+                                               Weapon newWeapon = throwWeapon();
+                                               System.out.println(newWeapon.getName() + " dropped.");
+                                               itemArrayList.add(newWeapon);
+                                               enemyArrayList.remove(index1);
+                                           }
+                                           i++;
+                                           break;
+                                       case "heal":
+                                           healer.getHandledWeapon().getType().equals("wand");
+                                           System.out.println("Which one do you want to heal?");
+                                           for (int j = 0; j < characterArrayList.size(); j++) {
+                                               System.out.println(characterArrayList.get(j).getName() + " has " + characterArrayList.get(j).getHP());
+                                           }
+                                           String healFriend = sc.next();
+                                           healFriend = healFriend.toLowerCase();
+                                           System.out.println(healFriend);
+                                           int index2 = 0;
+                                           for (int j = 0; j < characterArrayList.size(); j++) {
+                                               if (characterArrayList.get(j).getName().toLowerCase().equals(healFriend)) {
+                                                   break;
+                                               }
+                                               index2++;
+                                           }
+                                           Wand wandOfHealer = (Wand) healer.getHandledWeapon();
+                                           double heal = wandOfHealer.heal(healer);
+                                           System.out.println(heal);
+                                           characterArrayList.get(index2).renewHP(2, heal);
+                                           System.out.println("New HP of " + characterArrayList.get(index2).getName() + " is " + characterArrayList.get(index2).getHP());
+                                           i++;
+                                           break;
+                                       case "check":
+                                           if (itemArrayList.isEmpty()) {
+                                               System.out.println("There are no item on the grass.");
+                                           } else {
+                                               System.out.println("ITEMS: ");
+                                               for (int j = 0; j < itemArrayList.size(); j++) {
+                                                   itemArrayList.get(j).printInfo();
+                                               }
+                                               System.out.println("Will you pick?");
+                                               int itemIndex = sc.nextInt();
+                                               itemIndex = itemIndex - 1;
+                                               healer.add(itemArrayList.get(itemIndex));
+                                           }
+                                           break;
+                                       case "inventory":
+                                           if (healer.getInventory().isEmpty()) {
+                                               System.out.println("No item in inventory.");
+                                           } else {
+                                               healer.printInventory();
+                                           }
+                                           break;
+                                       case "wield":
+                                           healer.changeHandledItem();
+                                       default:
+                                           System.out.println("Enter a valid input.");
+                                           break;
+                                   }
+
+                               case "t":
+                                   System.out.println("You are playing with tank");
+                                   int index3 = 0;
+                                   for (int j = 0; j < characterArrayList.size(); j++) {
+                                       if (characterArrayList.get(j).getName().equals("tank")) {
+                                           index3 = j;
+                                       }
+                                   }
+                                   System.out.println("What do you want to do?");
+                                   System.out.println("Enter attack for attack");
+                                   System.out.println("Enter check for see if there any items on the grass");
+                                   System.out.println("Enter inventory for see inventory");
+                                   System.out.println("Enter wield for wield a weapon or armor");
+                                   String choice1 = sc.next();
+                                   choice1 = choice1.toLowerCase();
+                                   switch (choice1) {
+                                       case "attack":
+                                           for (int j = 0; j < enemyArrayList.size(); j++) {
+                                               System.out.println("Name: " + enemyArrayList.get(j).getName() + " HP: " + enemyArrayList.get(j).getHP());
+                                           }
+                                           String enemyChoice = sc.next();
+                                           enemyChoice = enemyChoice.toLowerCase();
+                                           int index1 = 0;
+                                           for (int j = 0; j < enemyArrayList.size(); j++) {
+                                               if (enemyArrayList.get(j).getName().toLowerCase().equals(enemyChoice)) {
+                                                   break;
+                                               }
+                                               index1++;
+                                           }
+                                           System.out.println("Tank attacked to " + enemyArrayList.get(index1).getName());
+                                           double damage = tank.attack();
+                                           enemyArrayList.get(index1).renewHP(1, damage);
+                                           System.out.println("Tank made " + damage + "damage.");
+                                           System.out.println(enemyArrayList.get(index1).getName() + " has " + enemyArrayList.get(index1).getHP() + " HP.");
+                                           if (enemyArrayList.get(index1).getHP() < 0) {
+                                               System.out.println(enemyArrayList.get(index1).getName() + " is dead.");
+                                               Weapon newWeapon = throwWeapon();
+                                               System.out.println(newWeapon.getName() + " dropped.");
+                                               itemArrayList.add(newWeapon);
+                                               enemyArrayList.remove(index1);
+                                           }
+                                           i++;
+                                           break;
+                                       case "check":
+                                           if (itemArrayList.isEmpty()) {
+                                               System.out.println("There are no item on the grass.");
+                                           } else {
+                                               System.out.println("ITEMS: ");
+                                               for (int j = 0; j < itemArrayList.size(); j++) {
+                                                   itemArrayList.get(j).printInfo();
+                                               }
+                                               System.out.println("Will you pick?");
+                                               int itemIndex = sc.nextInt();
+                                               itemIndex = itemIndex - 1;
+                                               tank.add(itemArrayList.get(itemIndex));
+                                           }
+                                           break;
+                                       case "inventory":
+                                           if (tank.getInventory().isEmpty()) {
+                                               System.out.println("No item in inventory.");
+                                           } else {
+                                               tank.printInventory();
+                                           }
+                                           break;
+                                       case "wield":
+                                           tank.changeHandledItem();
+                                       default:
+                                           System.out.println("Enter a valid input.");
+                                           break;
+                                   }
+                               case "f":
+                                   System.out.println("You are playing with fighter");
+                                   int index4 = 0;
+                                   for (int j = 0; j < characterArrayList.size(); j++) {
+                                       if (characterArrayList.get(j).getName().equals("fighter")) {
+                                           index4 = j;
+                                       }
+                                   }
+                                   System.out.println("What do you want to do?");
+                                   System.out.println("Enter attack for attack");
+                                   System.out.println("Enter block for block an enemy one tour");
+                                   System.out.println("Enter check for see if there any items on the grass");
+                                   System.out.println("Enter inventory for see inventory");
+                                   System.out.println("Enter wield for wield a weapon or armor");
+                                   String choice2 = sc.next();
+                                   choice2 = choice2.toLowerCase();
+                                   switch (choice2) {
+                                       case "attack":
+                                           for (int j = 0; j < enemyArrayList.size(); j++) {
+                                               System.out.println("Name: " + enemyArrayList.get(j).getName() + " HP: " + enemyArrayList.get(j).getHP());
+                                           }
+                                           String enemyChoice = sc.next();
+                                           enemyChoice = enemyChoice.toLowerCase();
+                                           int index1 = 0;
+                                           for (int j = 0; j < enemyArrayList.size(); j++) {
+                                               if (enemyArrayList.get(j).getName().toLowerCase().equals(enemyChoice)) {
+                                                   break;
+                                               }
+                                               index1++;
+                                           }
+                                           System.out.println("Fighter attacked to " + enemyArrayList.get(index1).getName());
+                                           double damage = fighter.attack();
+                                           enemyArrayList.get(index1).renewHP(1, damage);
+                                           System.out.println("Fighter made " + damage + "damage.");
+                                           System.out.println(enemyArrayList.get(index1).getName() + " has " + enemyArrayList.get(index1).getHP() + " HP.");
+                                           if (enemyArrayList.get(index1).getHP() < 0) {
+                                               System.out.println(enemyArrayList.get(index1).getName() + " is dead.");
+                                               Weapon newWeapon = throwWeapon();
+                                               System.out.println(newWeapon.getName() + " dropped.");
+                                               itemArrayList.add(newWeapon);
+                                               enemyArrayList.remove(index1);
+                                           }
+                                           i++;
+                                           break;
+                                       case "block":
+                                           int enemyAmount = enemyArrayList.size();
+                                           enemyAmount = enemyAmount - 1;
+                                           int randomEnemy = random.nextInt(0, enemyAmount);
+                                           enemyArrayList.get(randomEnemy).setBlock(true);
+                                           System.out.println(enemyArrayList.get(randomEnemy).getName() + "blocked.");
+                                           i++;
+                                           break;
+                                       case "check":
+                                           if (itemArrayList.isEmpty()) {
+                                               System.out.println("There are no item on the grass.");
+                                           } else {
+                                               System.out.println("ITEMS: ");
+                                               for (int j = 0; j < itemArrayList.size(); j++) {
+                                                   itemArrayList.get(j).printInfo();
+                                               }
+                                               System.out.println("Will you pick?");
+                                               int itemIndex = sc.nextInt();
+                                               itemIndex = itemIndex - 1;
+                                               tank.add(itemArrayList.get(itemIndex));
+                                           }
+                                           break;
+                                       case "inventory":
+                                           if (fighter.getInventory().isEmpty()) {
+                                               System.out.println("No item in inventory.");
+                                           } else {
+                                               fighter.printInventory();
+                                           }
+                                           break;
+                                       case "wield":
+                                           fighter.changeHandledItem();
+                                       default:
+                                           System.out.println("Enter a valid input.");
+                                           break;
+                                   }
+                                   break;
+                               default:
+                                   System.out.println("Enter true character name");
+                                   break;
+                           }
+                       } else {
+                           System.out.println("NEXT LEVEL");
+                           i = 3;
+                       }
+                   }
+                   if (enemyArrayList.size() > 0) {
+                       for (int j = 0; j < enemyArrayList.size(); j++) {
+                           int index5 = characterArrayList.size();
+                           index5 = index5 - 1;
+                           int xRandom = random.nextInt(0, index5);
+                           if (!enemyArrayList.get(j).isBlock()) {
+                               if (characterArrayList.get(xRandom).getHandledWeapon().getType().equals("shield")) {
+                                   boolean isBlock = random.nextBoolean();
+                                   if (!isBlock) {
+                                       System.out.println(enemyArrayList.get(j).getName() + "attacked to " + characterArrayList.get(xRandom).getName() + " with damage " + enemyArrayList.get(j).attack());
+                                       double damage = enemyArrayList.get(j).attack();
+                                       characterArrayList.get(xRandom).renewHP(1, damage);
+                                       System.out.println("New HP: " + characterArrayList.get(xRandom).getHP());
+                                   } else {
+                                       System.out.println(enemyArrayList.get(j));
+                                   }
+                               } else {
+                                   System.out.println(enemyArrayList.get(j).getName() + "attacked to " + characterArrayList.get(xRandom).getName() + "with damage " + enemyArrayList.get(j).attack());
+                                   double damage = enemyArrayList.get(j).attack();
+                                   characterArrayList.get(xRandom).renewHP(1, damage);
+                                   System.out.println("New HP: " + characterArrayList.get(xRandom).getHP());
+                               }
+
+                               if (characterArrayList.get(xRandom).getHP() <= 0) {
+                                   System.out.println(characterArrayList.get(xRandom).getName() + "died.");
+                                   characterArrayList.remove(xRandom);
+                               }
+                           }
+                       else{
+                           System.out.println(enemyArrayList.get(j).getName() + " not available");
+                       }
+                   }
+               } else{
+                           System.out.println("NEXT LEVEL");
+                           i=3;
+                       }
+               }
+           } else {
+               game = false;
+           }
+           level++;
+           enemyCounter = (int) Math.pow(2, level);
+       }
         }
+  public static void enemyGenerator(int enemyCounter,ArrayList<Enemy> enemyArrayList){
+        Weapon sword = new Sword("Broken sword",1,1,2);
+        Weapon shield = new Shield("Broken Shield",2,1,1);
+        Weapon wand = new Wand("Broken Wand",1,1,0.5);
+        Armor leatherArmor = new LeatherArmor("Old Armor",1,1);
 
+      for (int i = 0; i < enemyCounter; i++) {
+          String name = "Enemy" + (i+1);
+          int enemyWeapon = random.nextInt(1,10);
+          if (enemyWeapon<8 && enemyWeapon>0){
+              Enemy enemy = new Enemy(name,sword,leatherArmor);
+              enemyArrayList.add(enemy);
+          }
+          else if (enemyWeapon>8 && enemyWeapon<10){
+              Enemy enemy = new Enemy(name,wand,leatherArmor);
+              enemyArrayList.add(enemy);
+          }
+          else if (enemyWeapon ==10){
+              Enemy enemy = new Enemy(name,shield,leatherArmor);
+              enemyArrayList.add(enemy);
+          }
+      }
+  }
+  public static Weapon throwWeapon(){
+        Weapon[] throwen = new Weapon[10];
+        int index = random.nextInt(0,9);
+return  throwen[index];
+  }
     }
-
-    public void startGame(){
-        //level olusturma basta olunca karakterler levela giriyor diyor sonra karakterleri olusturuyor
-        //o yuzden karakter olusturmayi basa aldim.
-        System.out.println("Welcome to Cannon Fodder!");
-        System.out.println("--------------------------------");
-        login();
-        generateTank();
-        generateFighter();
-        generateHealer();
-
-        //levels.add(currentLevel); bunda null erroru veriyor.
-        //currentLevel.characterArrayList = firstCharacters;
-    }
-
-    public void generateTank(){
-        tank = new Tank(generateValue(5,1),
-                generateValue(10,6),
-                generateValue(7,3),
-                generateValue(5,1));
-        players.add(tank);
-    }
-
-    public void generateFighter(){
-        fighter = new Fighter(generateValue(10,6),
-                generateValue(7,3),
-                generateValue(5,1),
-                generateValue(5,1));
-        players.add(fighter);
-    }
-
-    public void generateHealer(){
-        healer = new Healer(generateValue(7,3),
-                generateValue(5,1),
-                generateValue(10,6),
-                generateValue(5,1));
-        players.add(healer);
-    }
-
-
-    public void login(){
-        System.out.println("Please enter your name : ");
-        String playerName =sc.next();
-    }
-
-    public void initializeEnemies() {
-        for (int i = 0; i < Math.pow(2, level); i++) {
-             enemy = new Enemy(generateValue(1,5),generateValue(1,5),
-                    generateValue(1,5),generateValue(1,5));
-            currentEnemies.add(enemy);
-        }
-    }
-
-    private static int generateValue(int lowerBound, int upperBound){
-        Random rand = new Random();
-        int value = rand.nextInt(upperBound) + lowerBound ;
-        return value;
-    }
-
-    public void runGame() {
-        while (isOver) {
-            String chaChoice = sc.next();
-            if (chaChoice.contains("Fighter") || chaChoice.contains("fighter") || chaChoice.contains("f")) {
-                System.out.println("Fighter attack Enemy" );
-                fighter.attack();
-                enemy.setMaxHP(enemy.getMaxHP() - fighter.getWeapon().getDamage() * fighter.getMaxStrength());
-                System.out.println("Enemy" + " has " + Math.round(enemy.getHP()) + " HP left.");
-
-            } else if (chaChoice.contains("Healer") || chaChoice.contains("healer") || chaChoice.contains("h")) {
-                System.out.println("Healer attack Enemy" );
-                healer.attack();
-                enemy.setMaxHP(enemy.getMaxHP() - healer.getWeapon().getDamage() * healer.getMaxIntelligence());
-                System.out.println("Enemy" +  " has " + Math.round(enemy.getMaxHP()) + " HP left.");
-
-            } else if (chaChoice.contains("Tank") || chaChoice.contains("tank") || chaChoice.contains("t")) {
-                System.out.println("Tank attack Enemy" );
-                tank.attack();
-                enemy.setMaxHP(enemy.getMaxHP() - tank.getWeapon().getDamage() * tank.getMaxVitality());
-                System.out.println("Enemy" +  " has " + Math.round(enemy.getHP()) + " HP left.");
-            }
-            System.out.println();
-            levelUpOrFinish();
-            //Daha enemy atağını tam yapmadım, swordu varmış farz ediyorum.
-            if (isOver){
-                System.out.println("Enemy" +  " attack Tank.");
-                enemy.attack();
-                tank.setMaxHP(tank.getMaxHP() - enemy.getWeapon().getDamage() * enemy.getStrength());
-                System.out.println("Tank has " + Math.round(tank.getMaxHP()) + " HP left.");
-            }
-        }
-    }
-
-    public void levelUpOrFinish() {
-        if (fighter.getMaxHP() <= 0 && healer.getMaxHP() <= 0 && tank.getMaxHP() <= 0) {
-            System.out.println("You lose,game finished.");
-            isOver = false;
-            System.exit(0);
-        } else if (enemy.getMaxHP() <= 0.5) {
-            System.out.println("You killed the enemies.Well done!");
-            System.out.println("Type next for level " );
-            String choice = sc.next();
-            if (choice.contains("next") || choice.contains("Next")){
-
-            }
-            else {
-                System.exit(0);
-            }
-            isOver = false;
-        }
-        else{
-
-        }
-
-    }
-
-    static void combat() throws InterruptedException {
-        int temp;
-        int enemyTemp = 0;
-        boolean fighting = true;
-        int numberOfEnemies = currentEnemies.size();
-        int numberOfPlayers = players.size();
-
-        System.out.println("------------LEVEL " + level + " --------------");
-        System.out.println("Number of enemies are " + numberOfEnemies + "          |");
-        System.out.println("The fight begins------------------");
-
-        while (fighting) {
-            boolean targeted = true;
-            if (numberOfEnemies == 1) {
-                temp = 0;
-            } else {
-                temp = random.nextInt(0, numberOfEnemies - 1);
-            }
-            while (targeted) {
-                for (int i = 0; i < players.size(); i++) {
-                    System.out.println(
-                            "It is " + players.get(i).getRole() + " " + players.get(i).getName()
-                                    + "'s turn.");
-                    players.get(i).setTarget(currentEnemies.get(temp));
-                    boolean menu = true;
-                    while (menu) {
-                        TimeUnit.SECONDS.sleep(1);
-                        System.out.println("******************************************************");
-                        System.out.println("Here are your player options");
-                        System.out.println("Enter 1 to basic attack enemy");
-                        System.out.println("Enter 2 to use special ability");
-                        System.out.println("Enter 3 to display inventory");
-                        System.out.println("Enter 4 to display character information and stats");
-                        System.out.println("******************************************************");
-                        int answer = sc.nextInt();
-                        switch (answer) {
-                            case 1:
-                                players.get(i).attack();
-                                menu = false;
-                                break;
-                            case 2:
-                                System.out.println("Special Ability");
-                                if (round == players.get(i).getAbility().getEndOfCooldown()) {
-                                    players.get(i).getAbility().setAbilityReady(true);
-                                }
-                                if (players.get(i).getAbility().getabilityReady()) {
-                                    if (players.get(i).getRole().equals("Healer")) {
-                                        System.out.println("Please select an ally to heal");
-                                        for (int j = 0; j < players.size(); j++) {
-                                            System.out
-                                                    .println("Enter " + j + " to heal "
-                                                            + players.get(j).getName());
-                                        }
-                                        int caseTwoChoice = sc.nextInt();
-                                        if (caseTwoChoice == 0) {
-                                            players.get(i).getAbility().setAlly(players.get(0));
-                                        } else if (caseTwoChoice == 1) {
-                                            players.get(i).getAbility().setAlly(players.get(1));
-                                        } else if (caseTwoChoice == 2) {
-                                            players.get(i).getAbility().setAlly(players.get(2));
-                                        }
-                                    }
-                                    players.get(i).getAbility().cast();
-                                    players.get(i).getAbility()
-                                            .setEndOfCooldown(round + players.get(i).getAbility().getCooldown());
-                                } else {
-                                    System.out.println("Ability not ready yet");
-                                }
-                                menu = false;
-                                break;
-                            case 3:
-                                for (int j = 0; j < players.get(i).getInventory().size(); j++) {
-                                    TimeUnit.SECONDS.sleep(1);
-                                    System.out.println(players.get(i).getInventory().get(j).getType() + " "
-                                            + players.get(i).getInventory().get(j).getName());
-                                }
-                                System.out.println("Enter 1 to see additional information about the items");
-                                System.out.println("Enter 2 to go back to menu");
-                                int caseThreeAnswer = sc.nextInt();
-                                if (caseThreeAnswer == 1) {
-                                    for (int j = 0; j < players.get(i).getInventory().size(); j++) {
-                                        TimeUnit.SECONDS.sleep(1);
-                                        players.get(i).getInventory().get(j).printItemInfo();
-                                    }
-                                }
-                                break;
-                            case 4:
-                                players.get(i).characterPrintInfo();
-                                break;
-                            case 5:
-                                int k = droppedItems.size();
-                                if(k>=1){
-                                    System.out.println("One of the enemies dropped" + droppedItems.get(0).getName());
-                                }else{
-                                    System.out.println("There is nothing to inspect at the moment");
-                                }
-                        }
-                    }
-                    TimeUnit.SECONDS.sleep(1);
-                    if (players.get(i).getTarget().getHealthPoint() <= 0) {
-                        players.get(i).getTarget().setHealthPoint(0);
-                    }
-                    System.out.println(
-                            "Current health of the enemy is " + players.get(i).getTarget().getHealthPoint());
-                    TimeUnit.SECONDS.sleep(1);
-                    if (players.get(i).getTarget().getHealthPoint() <= 0) {
-                        break;
-                    }
-                }
-
-                if (currentEnemies.get(temp).getHealthPoint() <= 0) {
-                    System.out.println(currentEnemies.get(temp).getName() + " is dead");
-                    currentEnemies.remove(temp);
-                    numberOfEnemies = currentEnemies.size();
-                    droppedItems.add(new Potion(data, ""));
-                    System.out.println("Enemy dropped" + droppedItems.get(droppedItems.size()-1).getName());
-                    targeted = false;
-                }
-
-                for (int i = 0; i < currentEnemies.size(); i++) {
-                    int enemyIndex = 0;
-                    for (int j = 0; j < players.size(); j++) {
-                        if (players.get(j).getRole().equals("Tank")) {
-                            enemyTemp = j;
-                        }
-                    }
-                    if (currentEnemies.get(i).getIsStunned()) {
-                        System.out.println(currentEnemies.get(i).getName() + " is stunned.");
-                        continue;
-                    }
-                    System.out.println("It is " + currentEnemies.get(i).getName() + "'s turn ");
-                    TimeUnit.SECONDS.sleep(1);
-                    currentEnemies.get(i).setTarget(players.get(enemyIndex));
-                    currentEnemies.get(i).attack();
-                    if (currentEnemies.get(i).getTarget().getHP() <= 0) {
-                        currentEnemies.get(i).getTarget().setHP(0);
-                    }
-                    TimeUnit.SECONDS.sleep(1);
-                    System.out.println("Current health of the " + currentEnemies.get(i).getTarget().getName() + " is "
-                            + currentEnemies.get(i).getTarget().getHP());
-                    currentEnemies.get(i).setStunned(false);
-                    TimeUnit.SECONDS.sleep(1);
-                    if (currentEnemies.get(i).getTarget().getHP() <= 0) {
-                        break;
-                    }
-                }
-
-                if (players.get(enemyTemp).getHP() <= 0) {
-                    TimeUnit.SECONDS.sleep(1);
-                    System.out.println(players.get(enemyTemp).getName() + " is dead");
-                    players.remove(enemyTemp);
-                    numberOfPlayers = players.size();
-                    targeted = false;
-                }
-                round++;
-
-            }
-            if (numberOfEnemies == 0) {
-                fighting = false;
-                TimeUnit.SECONDS.sleep(1);
-                System.out.println();
-                System.out.println("All enemies are dead..");
-                System.out.println("LEVEL CLEARED");
-            }
-            else if (numberOfPlayers == 0) {
-                fighting = false;
-                TimeUnit.SECONDS.sleep(1);
-                System.out.println();
-                System.out.println("All players are dead...");
-                System.out.println("GAME OVER");
-                game = false;
-            }
-        }
-    }
-
-}
 

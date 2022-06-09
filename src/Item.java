@@ -2,15 +2,7 @@ public class Item {
     private String name;
     private int weight;
     private int value;
-    private double damage;
-
-    public double getDamage() {
-        return damage;
-    }
-
-    public void setDamage(double damage) {
-        this.damage = damage;
-    }
+    protected  String category;
 
     public String getName() {
         return name;
@@ -36,11 +28,18 @@ public class Item {
         this.value = value;
     }
 
-    public Item(String name, int weight, int value, double damage) {
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public Item(String name, int weight, int value) {
         this.name = name;
         this.weight = weight;
         this.value = value;
-        this.damage = damage;
     }
     public void showInfo() {
         System.out.println("The name of this item is: " + name);
@@ -50,7 +49,12 @@ public class Item {
         } else {
             System.out.println("Seems easy to carry. It weighs: " + weight);
         }
-
     }
 
+    public void printInfo(){
+    System.out.println("Category: " + getCategory());
+    System.out.println("Name: " + getName());
+    System.out.println("Weight: " + getWeight());
+    System.out.println("Value: " + getValue());
+}
 }
