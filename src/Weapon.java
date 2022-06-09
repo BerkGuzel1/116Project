@@ -20,6 +20,7 @@ public class Weapon extends Item {
 
     public Weapon(String name, int weight, int value, double damage) {
         super(name, weight, value);
+        this.damage =damage;
         this.type = "Null";
         this.category= "weapon";
     }

@@ -14,9 +14,9 @@ public abstract class Character {
 
     public Character(String name,Weapon handledWeapon, Armor wornArmor) {
         this.name = name;
-        this.inventory = new ArrayList<>();
         this.handledWeapon = handledWeapon;
         this.wornArmor = wornArmor;
+        this.inventory = new ArrayList<>();
     }
 
 

@@ -17,12 +17,15 @@ public class Test {
         ArrayList<Character> characterArrayList = new ArrayList<>();
 
         Weapon sword = new Sword("Short Sword",2,2,2);
+        //itemArrayList.add(sword);
         Armor fighterArmor = new LeatherArmor("Leather Armor",1 ,1);
         Character fighter = new Fighter("fighter",sword,fighterArmor);
         Weapon shield = new Shield("Short Shield",3,2,1);
+    //    itemArrayList.add(shield);
         Armor tankArmor = new LeatherArmor("Leather Armor",1 ,1);
         Character tank = new Tank("tank",shield,tankArmor);
         Weapon wand = new Wand("Short Wand",1,2,0.5);
+     //   itemArrayList.add(wand);
         Armor healerArmor = new LeatherArmor("Leather Armor",1 ,1);
         Character healer = new Healer("healer",wand,healerArmor);
         characterArrayList.add(fighter);
@@ -32,9 +35,16 @@ public class Test {
         System.out.println("   CANNON FODDER    ");
         System.out.println("********************");
         System.out.println("Your characters are:");
+        System.out.println();
+        System.out.println("--FIGHTER--");
        fighter.printInfo(fighter);
+        System.out.println();
+        System.out.println("---TANK---");
        tank.printInfo(tank);
+        System.out.println();
+        System.out.println("--HEALER--");
        healer.printInfo(healer);
+        System.out.println();
 
        boolean game = true;
        while (game) {
@@ -43,7 +53,7 @@ public class Test {
                System.out.println("Enemy number: " + enemyCounter);
                enemyGenerator(enemyCounter, enemyArrayList);
                for (int i = 0; i < enemyArrayList.size(); i++) {
-                   System.out.println("Name: " + enemyArrayList.get(i).getName() + "with " + enemyArrayList.get(i).getHP() + " HP");
+                   System.out.println("Name: " + enemyArrayList.get(i).getName() + " with " + enemyArrayList.get(i).getHP() + " HP");
                }
                while (enemyArrayList.size() > 0) {
                    int i = 0;
@@ -382,6 +392,16 @@ public class Test {
   }
   public static Weapon throwWeapon(){
         Weapon[] throwen = new Weapon[10];
+        throwen[0] = new Sword("MSword",2,2,3);
+        throwen[2] = new Sword("BSword",3,1,2);
+        throwen[3] = new Sword("GSword",1,5,4);
+        throwen[4] = new Shield("GShield",1,3,2);
+        throwen[5] = new Shield("BShield",2,1,1);
+        throwen[6] =new Shield("MShield",3,1,2);
+        throwen[7] = new Wand("MWand",1,2,2);
+        throwen[8] = new Wand("BWand",2,2,1);
+        throwen[9] = new Wand("GWand",3,3,3);
+
         int index = random.nextInt(0,9);
 return  throwen[index];
   }
