@@ -98,7 +98,7 @@ public abstract class Character {
                 }
             }
         } else if (item.getCategory().equals("weapon")) {
-            if ((total + item.getWeight()) <= strength) {
+            if ((total + item.getWeight())/2 <= strength) {
                 inventory.add(item);
                 System.out.println(item.getName() + " picked");
             } else {

@@ -15,15 +15,12 @@ public class Test {
         ArrayList<Character> characterArrayList = new ArrayList<>();
 
         Weapon sword = new Sword("Short Sword",1,2,2);
-        //itemArrayList.add(sword);
         Armor fighterArmor = new LeatherArmor("Leather Armor",1 ,1);
         Character fighter = new Fighter("fighter",sword,fighterArmor);
         Weapon shield = new Shield("Short Shield",2,2,1);
-    //    itemArrayList.add(shield);
         Armor tankArmor = new LeatherArmor("Leather Armor",1 ,1);
         Character tank = new Tank("tank",shield,tankArmor);
         Weapon wand = new Wand("Short Wand",1,2,0.5);
-     //   itemArrayList.add(wand);
         Armor healerArmor = new LeatherArmor("Leather Armor",1 ,1);
         Character healer = new Healer("healer",wand,healerArmor);
         characterArrayList.add(fighter);
@@ -44,9 +41,10 @@ public class Test {
         System.out.println("--HEALER--");
        healer.printInfo(healer);
         System.out.println();
+        tank.add(shield);
         fighter.add(sword);
         healer.add(wand);
-        tank.add(shield);
+
 
 
        boolean game = true;
