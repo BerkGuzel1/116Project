@@ -14,11 +14,11 @@ public class Test {
         ArrayList<Item> itemArrayList = new ArrayList<>();
         ArrayList<Character> characterArrayList = new ArrayList<>();
 
-        Weapon sword = new Sword("Short Sword",2,2,2);
+        Weapon sword = new Sword("Short Sword",1,2,2);
         //itemArrayList.add(sword);
         Armor fighterArmor = new LeatherArmor("Leather Armor",1 ,1);
         Character fighter = new Fighter("fighter",sword,fighterArmor);
-        Weapon shield = new Shield("Short Shield",3,2,1);
+        Weapon shield = new Shield("Short Shield",2,2,1);
     //    itemArrayList.add(shield);
         Armor tankArmor = new LeatherArmor("Leather Armor",1 ,1);
         Character tank = new Tank("tank",shield,tankArmor);
@@ -46,6 +46,7 @@ public class Test {
         System.out.println();
         fighter.add(sword);
         healer.add(wand);
+        tank.add(shield);
 
 
        boolean game = true;
@@ -71,7 +72,7 @@ public class Test {
                            character = character.toLowerCase();
                            switch (character) {
                                case "h":
-                                   while (true) {
+
                                        System.out.println("You are playing with healer");
                                        int index = 0;
                                        for (int j = 0; j < characterArrayList.size(); j++) {
@@ -167,77 +168,78 @@ public class Test {
                                                System.out.println("Enter a valid input.");
                                                break;
                                        }
-                                   }
+                                       break;
                                case "t":
-                                   System.out.println("You are playing with tank");
-                                   int index3 = 0;
-                                   for (int j = 0; j < characterArrayList.size(); j++) {
-                                       if (characterArrayList.get(j).getName().equals("tank")) {
-                                           index3 = j;
+                                       System.out.println("You are playing with tank");
+                                       int index3 = 0;
+                                       for (int j = 0; j < characterArrayList.size(); j++) {
+                                           if (characterArrayList.get(j).getName().equals("tank")) {
+                                               index3 = j;
+                                           }
                                        }
-                                   }
-                                   System.out.println("What do you want to do?");
-                                   System.out.println("Enter attack for attack");
-                                   System.out.println("Enter check for see if there any items on the grass");
-                                   System.out.println("Enter inventory for see inventory");
-                                   System.out.println("Enter wield for wield a weapon or armor");
-                                   String choice1 = sc.next();
-                                   choice1 = choice1.toLowerCase();
-                                   switch (choice1) {
-                                       case "attack":
-                                           for (int j = 0; j < enemyArrayList.size(); j++) {
-                                               System.out.println("Name: " + enemyArrayList.get(j).getName() + " HP: " + enemyArrayList.get(j).getHP());
-                                           }
-                                           String enemyChoice = sc.next();
-                                           enemyChoice = enemyChoice.toLowerCase();
-                                           int index1 = 0;
-                                           for (int j = 0; j < enemyArrayList.size(); j++) {
-                                               if (enemyArrayList.get(j).getName().toLowerCase().equals(enemyChoice)) {
-                                                   break;
+                                       System.out.println("What do you want to do?");
+                                       System.out.println("Enter attack for attack");
+                                       System.out.println("Enter check for see if there any items on the grass");
+                                       System.out.println("Enter inventory for see inventory");
+                                       System.out.println("Enter wield for wield a weapon or armor");
+                                       String choice1 = sc.next();
+                                       choice1 = choice1.toLowerCase();
+                                       switch (choice1) {
+                                           case "attack":
+                                               for (int j = 0; j < enemyArrayList.size(); j++) {
+                                                   System.out.println("Name: " + enemyArrayList.get(j).getName() + " HP: " + enemyArrayList.get(j).getHP());
                                                }
-                                               index1++;
-                                           }
-                                           System.out.println("Tank attacked to " + enemyArrayList.get(index1).getName());
-                                           double damage = tank.attack();
-                                           enemyArrayList.get(index1).renewHP(1, damage);
-                                           System.out.println("Tank made " + damage + "damage.");
-                                           System.out.println(enemyArrayList.get(index1).getName() + " has " + enemyArrayList.get(index1).getHP() + " HP.");
-                                           if (enemyArrayList.get(index1).getHP() < 0) {
-                                               System.out.println(enemyArrayList.get(index1).getName() + " is dead.");
-                                               Weapon newWeapon = throwWeapon();
-                                               System.out.println(newWeapon.getName() + " dropped.");
-                                               itemArrayList.add(newWeapon);
-                                               enemyArrayList.remove(index1);
-                                           }
-                                           i++;
-                                           break;
-                                       case "check":
-                                           if (itemArrayList.isEmpty()) {
-                                               System.out.println("There are no item on the grass.");
-                                           } else {
-                                               System.out.println("ITEMS: ");
-                                               for (int j = 0; j < itemArrayList.size(); j++) {
-                                                   itemArrayList.get(j).printInfo();
+                                               String enemyChoice = sc.next();
+                                               enemyChoice = enemyChoice.toLowerCase();
+                                               int index1 = 0;
+                                               for (int j = 0; j < enemyArrayList.size(); j++) {
+                                                   if (enemyArrayList.get(j).getName().toLowerCase().equals(enemyChoice)) {
+                                                       break;
+                                                   }
+                                                   index1++;
                                                }
-                                               System.out.println("Will you pick?");
-                                               int itemIndex = sc.nextInt();
-                                               itemIndex = itemIndex - 1;
-                                               tank.add(itemArrayList.get(itemIndex));
-                                           }
-                                           break;
-                                       case "inventory":
-                                           if (tank.getInventory().isEmpty()) {
-                                               System.out.println("No item in inventory.");
-                                           } else {
-                                               tank.printInventory();
-                                           }
-                                           break;
-                                       case "wield":
-                                           tank.changeHandledItem();
-                                       default:
-                                           System.out.println("Enter a valid input.");
-                                           break;
-                                   }
+                                               System.out.println("Tank attacked to " + enemyArrayList.get(index1).getName());
+                                               double damage = tank.attack();
+                                               enemyArrayList.get(index1).renewHP(1, damage);
+                                               System.out.println("Tank made " + damage + "damage.");
+                                               System.out.println(enemyArrayList.get(index1).getName() + " has " + enemyArrayList.get(index1).getHP() + " HP.");
+                                               if (enemyArrayList.get(index1).getHP() < 0) {
+                                                   System.out.println(enemyArrayList.get(index1).getName() + " is dead.");
+                                                   Weapon newWeapon = throwWeapon();
+                                                   System.out.println(newWeapon.getName() + " dropped.");
+                                                   itemArrayList.add(newWeapon);
+                                                   enemyArrayList.remove(index1);
+                                               }
+                                               i++;
+                                               break;
+                                           case "check":
+                                               if (itemArrayList.isEmpty()) {
+                                                   System.out.println("There are no item on the grass.");
+                                               } else {
+                                                   System.out.println("ITEMS: ");
+                                                   for (int j = 0; j < itemArrayList.size(); j++) {
+                                                       itemArrayList.get(j).printInfo();
+                                                   }
+                                                   System.out.println("Will you pick?");
+                                                   int itemIndex = sc.nextInt();
+                                                   itemIndex = itemIndex - 1;
+                                                   tank.add(itemArrayList.get(itemIndex));
+                                               }
+                                               break;
+                                           case "inventory":
+                                               if (tank.getInventory().isEmpty()) {
+                                                   System.out.println("No item in inventory.");
+                                               } else {
+                                                   tank.printInventory();
+                                               }
+                                               break;
+                                           case "wield":
+                                               tank.changeHandledItem();
+                                           default:
+                                               System.out.println("Enter a valid input.");
+                                               break;
+                                       }
+                                       break;
                                case "f":
                                    System.out.println("You are playing with fighter");
                                    int index4 = 0;
@@ -319,7 +321,7 @@ public class Test {
                                            System.out.println("Enter a valid input.");
                                            break;
                                    }
-                                   break;
+                                       break;
                                default:
                                    System.out.println("Enter true character name");
                                    break;
